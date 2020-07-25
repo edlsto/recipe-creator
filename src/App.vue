@@ -2,7 +2,7 @@
   <div id="app">
     <Nav />
     <main>
-      <router-view :recipes="recipes" />
+      <router-view :recipes="recipes" v-on:add="handleNewList" />
     </main>
   </div>
 </template>
@@ -15,6 +15,11 @@ import ToastImg from "./assets/avocado-toast.jpg";
 export default {
   components: {
     Nav,
+  },
+  methods: {
+    handleNewList: function(recipe) {
+      this.recipes.push(recipe);
+    },
   },
   data() {
     return {
