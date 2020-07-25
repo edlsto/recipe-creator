@@ -28,8 +28,9 @@ export default {
 .cards-container {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  margin-top: 2em;
+  margin-top: 4em;
   width: 95%;
   column-gap: 4em;
+  row-gap: 3em;
 }
 </style>
