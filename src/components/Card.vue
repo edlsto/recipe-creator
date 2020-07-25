@@ -39,7 +39,7 @@ export default {
   height: 70%;
 }
 .card-title {
-  margin-top: 1em;
+  margin-top: 0.5em;
 }
 .row-2 {
   display: flex;
