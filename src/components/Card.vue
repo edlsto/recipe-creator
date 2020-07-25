@@ -19,5 +19,8 @@ export default {
   margin: 1em;
   padding: 2em;
   border-radius: 1em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 </style>
