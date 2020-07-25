@@ -18,6 +18,7 @@
     <p>Prep time: {{ selectedRecipe.prepTime }}</p>
     <p>Cook time: {{ selectedRecipe.cookTime }}</p>
     <p>Serves: {{ selectedRecipe.serves }}</p>
+    <img class="recipe-img" :src="selectedRecipe.image" alt="" />
   </div>
 </template>
 
@@ -32,3 +33,9 @@ export default {
   },
 };
 </script>
+
+<style>
+.recipe-img {
+  width: 100%;
+}
+</style>
