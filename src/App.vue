@@ -37,12 +37,7 @@ export default {
         {
           id: 2,
           title: "Butternut Squash Soup",
-          ingredients: [
-            "4 taco shell",
-            "1 chicken breast",
-            "1 cup salsa",
-            "1 head lettuce",
-          ],
+          ingredients: ["4 squash", "1 cup milk", "Salt and pepper", "spices"],
           steps: [
             "Grill the chicken",
             "Heat up the shell",
@@ -55,12 +50,7 @@ export default {
         {
           id: 3,
           title: "Avocado Toast",
-          ingredients: [
-            "4 taco shell",
-            "1 chicken breast",
-            "1 cup salsa",
-            "1 head lettuce",
-          ],
+          ingredients: ["4 avocado", "1 toast", "1 tablespoon olive oil"],
           steps: [
             "Grill the chicken",
             "Heat up the shell",
