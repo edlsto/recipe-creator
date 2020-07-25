@@ -9,6 +9,9 @@
 
 <script>
 import Nav from "./components/Nav.vue";
+import TacosImg from "./assets/tacos.jpg";
+import SoupImg from "./assets/butternut-squash-soup.jpg";
+import ToastImg from "./assets/avocado-toast.jpg";
 export default {
   components: {
     Nav,
@@ -33,6 +36,7 @@ export default {
           prepTime: 15,
           cookTime: 15,
           serves: 4,
+          image: TacosImg,
         },
         {
           id: 2,
@@ -46,6 +50,7 @@ export default {
           prepTime: 15,
           cookTime: 15,
           serves: 4,
+          image: SoupImg,
         },
         {
           id: 3,
@@ -59,6 +64,7 @@ export default {
           prepTime: 15,
           cookTime: 15,
           serves: 4,
+          image: ToastImg,
         },
       ],
     };
