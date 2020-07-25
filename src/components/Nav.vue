@@ -1,12 +1,13 @@
 <template>
   <div class="nav">
-    <div class="logo-text-container">
-      <img class="logo" src="../assets/logo.png" />
-      <h1 class="title">
-        MealDeck
-      </h1>
-    </div>
-
+    <router-link to="/">
+      <div class="logo-text-container">
+        <img class="logo" src="../assets/logo.png" />
+        <h1 class="title">
+          MealDeck
+        </h1>
+      </div>
+    </router-link>
     <div class="nav-links">
       <router-link to="/">All recipes</router-link>
 
