@@ -9,9 +9,9 @@
       </div>
     </router-link>
     <div class="nav-links">
-      <router-link to="/">All recipes</router-link>
+      <router-link to="/" class="nav-link">All recipes</router-link>
 
-      <router-link to="/add">Add</router-link>
+      <router-link to="/add" class="nav-link">Add</router-link>
 
       <input type="text" class="search" />
     </div>
@@ -45,6 +45,9 @@ export default { name: "Nav" };
 a {
   text-decoration: none;
   color: black;
+}
+
+.nav-link {
   margin: 0 1em;
 }
 
