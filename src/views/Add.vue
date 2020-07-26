@@ -24,10 +24,10 @@
         </div>
         <div v-else>
           <div class="input-btn-container">
-            <h1 class="recipe-title">
+            <h1 class="recipe-add-name">
               {{ newRecipe.title }}
             </h1>
-            <button v-on:click="onEdit">Edit</button>
+            <button v-on:click="onEdit" class="edit-title-btn">Edit</button>
           </div>
         </div>
 
@@ -71,15 +71,13 @@
             <li v-for="(step, index) in newRecipe.steps" :key="index">
               {{ step }}
             </li>
-            <div class="input-btn-container">
-              <textarea
-                placeholder="Add step"
-                v-model="newStep"
-                type="text"
-                v-on:keyup.enter="onSubmitStep"
-                id="step"
-              />
-            </div>
+            <textarea
+              placeholder="Add step"
+              v-model="newStep"
+              type="text"
+              v-on:keyup.enter="onSubmitStep"
+              id="step"
+            />
             <button
               v-on:click="onSubmitStep"
               class="add-item-button add-button-below"
@@ -118,6 +116,7 @@
                 type="number"
                 class="add-item-input times-input"
                 id="prep-time"
+                placeholder="0"
               />
               <div class="details-unit">minutes</div>
             </div>
@@ -128,6 +127,7 @@
                 v-model="newRecipe.cookTime"
                 type="number"
                 id="cook-time"
+                placeholder="0"
               />
               <div class="details-unit">minutes</div>
             </div>
@@ -138,6 +138,7 @@
                 type="number"
                 class="add-item-input times-input"
                 id="serves"
+                placeholder="0"
               />
               <div class="details-unit">people</div>
             </div>
@@ -258,11 +259,16 @@ export default {
 .recipe-add-title {
   margin: 1em auto;
 }
-.recipe-title {
+.recipe-add-name {
   flex: 1 0 auto;
 }
-.submit {
+.add .submit {
   align-self: center;
+  font-size: 1.2em;
+  background: rgb(49, 110, 49);
+  outline: none;
+  cursor: pointer;
+  border-radius: 0;
 }
 .add {
   display: flex;
@@ -286,12 +292,13 @@ export default {
 }
 
 .add-item-input {
-  height: 1.7em;
+  height: 2em;
   flex: 1 0 auto;
   font-size: 1em;
   outline: none;
   border-radius: 0;
   border: 1px solid gray;
+  padding: 0.5em;
 }
 .form-row {
   display: flex;
@@ -317,6 +324,7 @@ export default {
   display: flex;
   margin-top: 1em;
   align-items: center;
+  margin-bottom: 2em;
 }
 
 .add-image {
@@ -345,7 +353,7 @@ textarea {
 }
 
 .no-ingredients {
-  margin: 0 auto;
+  margin: 2em auto;
 }
 
 .section-title {
@@ -410,5 +418,18 @@ input[type="number"] {
   display: flex;
   justify-content: center;
   margin-bottom: 1em;
+}
+
+.add button {
+  border: none;
+  color: white;
+  padding: 0.5em;
+  border-radius: 0.4em;
+  background: gray;
+  cursor: pointer;
+}
+
+.edit-title-btn {
+  margin-top: 0.5em;
 }
 </style>
