@@ -261,6 +261,7 @@ export default {
 }
 .recipe-add-name {
   flex: 1 0 auto;
+  max-width: 100%;
 }
 .add .submit {
   align-self: center;
@@ -325,6 +326,7 @@ export default {
   margin-top: 1em;
   align-items: center;
   margin-bottom: 2em;
+  flex-wrap: wrap;
 }
 
 .add-image {
