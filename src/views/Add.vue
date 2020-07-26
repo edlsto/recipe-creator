@@ -1,21 +1,23 @@
 <template>
   <div class="add">
-    <h1 class="recipe-add-title">Add a new recipe</h1>
+    <h1 class="recipe-add-title">Add new recipe</h1>
 
     <div class="two-col">
       <div class="add-text">
         <div v-if="!newRecipe.title" class="add-item">
-          <label for="title">Recipe name</label>
+          <h4 class="section-title">Recipe name</h4>
           <input
             class="add-item-input"
             v-model="newTitle"
             type="text"
             id="title"
             placeholder="Add name"
+            v-on:keyup.enter="onSubmitTitle"
           />
           <button
             v-on:click="onSubmitTitle"
             class="add-item-button add-button-below"
+            :disabled="!newTitle"
           >
             Save
           </button>
@@ -50,7 +52,11 @@
                 v-on:keyup.enter="onSubmitIngredient"
                 id="ingredient"
               />
-              <button v-on:click="onSubmitIngredient" class="add-item-button">
+              <button
+                v-on:click="onSubmitIngredient"
+                class="add-item-button"
+                :disabled="!newIngredient"
+              >
                 Add
               </button>
             </div>
@@ -77,6 +83,7 @@
             <button
               v-on:click="onSubmitStep"
               class="add-item-button add-button-below"
+              :disabled="!newStep"
             >
               Add
             </button>
@@ -84,57 +91,83 @@
         </div>
       </div>
       <div class="add-image">
-        <h4 class="section-title">Select an image</h4>
+        <div class="add-item">
+          <h4 class="section-title">Select an image</h4>
 
-        <div v-if="!newRecipe.image" class="choose-file">
-          <img src="../assets/placeholder.png" class="img-preview" />
+          <div v-if="!newRecipe.image" class="choose-file">
+            <img src="../assets/placeholder.png" class="img-preview" />
 
-          <input
-            class="file-input"
-            type="file"
-            @change="onFileChange(newRecipe, $event)"
-          />
-        </div>
-        <div v-else>
-          <img :src="newRecipe.image" class="img-preview" />
-          <button @click="removeImage(newRecipe)">Remove image</button>
+            <input
+              class="file-input"
+              type="file"
+              @change="onFileChange(newRecipe, $event)"
+            />
+          </div>
+          <div v-else>
+            <img :src="newRecipe.image" class="img-preview" />
+            <button @click="removeImage(newRecipe)">Remove image</button>
+          </div>
         </div>
         <h4 class="section-title">Details</h4>
         <div class="times">
-          <div class="times-item">
-            <label for="prep-time|">Prep time</label>
-            <input
-              v-model="newRecipe.prepTime"
-              type="number"
-              class="add-item-input times-input"
-              id="prep-time"
-            />
-            <div>minutes</div>
-          </div>
-          <div class="times-item">
-            <label for="cook-time">Cook time</label>
-            <input
-              class="add-item-input times-input"
-              v-model="newRecipe.cookTime"
-              type="number"
-              id="cook-time"
-            />
-            <div>minutes</div>
-          </div>
-          <div class="times-item">
-            <label for="serves">Serves</label>
-            <input
-              v-model="newRecipe.serves"
-              type="number"
-              class="add-item-input times-input"
-              id="serves"
-            />
-            <div>people</div>
+          <div class="times-container">
+            <div class="times-item">
+              <label for="prep-time|">Prep time</label>
+              <input
+                v-model="newRecipe.prepTime"
+                type="number"
+                class="add-item-input times-input"
+                id="prep-time"
+              />
+              <div class="details-unit">minutes</div>
+            </div>
+            <div class="times-item">
+              <label for="cook-time">Cook time</label>
+              <input
+                class="add-item-input times-input"
+                v-model="newRecipe.cookTime"
+                type="number"
+                id="cook-time"
+              />
+              <div class="details-unit">minutes</div>
+            </div>
+            <div class="times-item">
+              <label for="serves">Serves</label>
+              <input
+                v-model="newRecipe.serves"
+                type="number"
+                class="add-item-input times-input"
+                id="serves"
+              />
+              <div class="details-unit">people</div>
+            </div>
           </div>
         </div>
       </div>
     </div>
-    <button v-on:click="submitList" class="submit">Submit</button>
+    <div v-if="validationFailed" class="validation-failed">
+      <ul>
+        <li v-if="!newRecipe.title">Add a recipe name</li>
+        <li v-if="!newRecipe.ingredients.length">
+          Add at least one ingredient
+        </li>
+        <li v-if="!newRecipe.steps.length">
+          Add at least one step
+        </li>
+        <li v-if="!newRecipe.cookTime">
+          Add the cooking time
+        </li>
+        <li v-if="!newRecipe.prepTime">
+          Add the prep time
+        </li>
+        <li v-if="!newRecipe.serves">
+          Add the serving amount
+        </li>
+      </ul>
+    </div>
+    <button v-on:click="submitList" class="submit">
+      Submit
+    </button>
   </div>
 </template>
 
@@ -157,8 +190,22 @@ export default {
       newIngredient: "",
       newStep: "",
       newTitle: "",
+      validationFailed: false,
     };
   },
+  computed: {
+    validated: function() {
+      return (
+        this.newRecipe.title &&
+        this.newRecipe.ingredients.length &&
+        this.newRecipe.steps.length &&
+        this.newRecipe.prepTime &&
+        this.newRecipe.cookTime &&
+        this.newRecipe.serves
+      );
+    },
+  },
+
   methods: {
     onSubmitIngredient: function() {
       this.newRecipe.ingredients.push(this.newIngredient);
@@ -169,6 +216,7 @@ export default {
       this.newStep = "";
     },
     onSubmitTitle: function() {
+      console.log("here");
       this.newRecipe.title = this.newTitle;
       this.newTitle = "";
     },
@@ -177,8 +225,12 @@ export default {
       this.newRecipe.title = "";
     },
     submitList: function() {
-      this.$emit("add", this.newRecipe);
-      this.$router.push({ name: "Home" });
+      if (this.validated) {
+        this.$emit("add", this.newRecipe);
+        this.$router.push({ name: "Home" });
+      } else {
+        this.validationFailed = true;
+      }
     },
     onFileChange(item, e) {
       let files = e.target.files || e.dataTransfer.files;
@@ -228,7 +280,7 @@ export default {
   display: block;
 }
 .add-item {
-  margin-bottom: 1em;
+  margin-bottom: 2em;
   display: flex;
   flex-direction: column;
 }
@@ -238,6 +290,8 @@ export default {
   flex: 1 0 auto;
   font-size: 1em;
   outline: none;
+  border-radius: 0;
+  border: 1px solid gray;
 }
 .form-row {
   display: flex;
@@ -316,6 +370,7 @@ textarea {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+  flex-direction: column;
 }
 
 .times-item {
@@ -327,5 +382,33 @@ textarea {
 
 .times-input {
   width: 3em;
+  flex: 0 0 auto;
+  text-align: center;
+}
+.details-unit {
+  font-size: 0.8em;
+}
+
+.times-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  /* display: none; <- Crashes Chrome on hover */
+  -webkit-appearance: none;
+  margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+}
+
+input[type="number"] {
+  -moz-appearance: textfield; /* Firefox */
+}
+
+.validation-failed {
+  color: red;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1em;
 }
 </style>
