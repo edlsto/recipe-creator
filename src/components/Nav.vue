@@ -98,4 +98,23 @@ a {
   border-bottom: 6px solid rgb(123, 216, 146);
   margin-bottom: -6px;
 }
+
+@media (max-width: 1000px) {
+  .nav {
+    justify-content: center;
+  }
+
+  .logo-text-container {
+    margin-bottom: 1em;
+  }
+}
+
+@media (max-width: 800px) {
+  .nav-links {
+    flex-direction: column;
+  }
+  .nav-link {
+    margin-bottom: 1em;
+  }
+}
 </style>
