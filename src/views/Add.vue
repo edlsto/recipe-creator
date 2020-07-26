@@ -22,13 +22,11 @@
             Save
           </button>
         </div>
-        <div v-else>
-          <div class="input-btn-container">
-            <h1 class="recipe-add-name">
-              {{ newRecipe.title }}
-            </h1>
-            <button v-on:click="onEdit" class="edit-title-btn">Edit</button>
-          </div>
+        <div v-else class="add-item add-item-title">
+          <h1 class="recipe-add-name">
+            {{ newRecipe.title }}
+          </h1>
+          <button v-on:click="onEdit" class="edit-title-btn">Edit</button>
         </div>
 
         <div class="add-item">
@@ -260,7 +258,6 @@ export default {
   margin: 1em auto;
 }
 .recipe-add-name {
-  flex: 1 0 auto;
   max-width: 100%;
 }
 .add .submit {
@@ -301,6 +298,11 @@ export default {
   border: 1px solid gray;
   padding: 0.5em;
 }
+
+.add-item-title {
+  flex-direction: row;
+  justify-content: space-between;
+}
 .form-row {
   display: flex;
   justify-content: space-between;
@@ -325,7 +327,7 @@ export default {
   display: flex;
   margin-top: 1em;
   align-items: center;
-  margin-bottom: 2em;
+  /* margin-bottom: 2em; */
   flex-wrap: wrap;
 }
 
@@ -352,6 +354,10 @@ textarea {
   padding: 2em;
   list-style-position: inside;
   flex-direction: column;
+}
+
+.ingredients-list li {
+  margin-bottom: 0.3em;
 }
 
 .no-ingredients {
@@ -432,6 +438,10 @@ input[type="number"] {
 }
 
 .edit-title-btn {
-  margin-top: 0.5em;
+  align-self: center;
+}
+
+.ingredients-list li {
+  margin-bottom: 1em;
 }
 </style>
