@@ -9,7 +9,9 @@
       </h4>
       <div class="row-2">
         <div class="serves">Serves: {{ serves }}</div>
-        <div class="serves">Time: {{ prepTime + cookTime }} minutes</div>
+        <div class="serves">
+          Time: {{ parseInt(prepTime) + parseInt(cookTime) }} minutes
+        </div>
       </div>
     </router-link>
   </div></template
