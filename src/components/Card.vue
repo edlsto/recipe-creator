@@ -1,7 +1,8 @@
 <template>
   <div class="card">
     <router-link :to="{ name: 'recipe', params: { id: id } }">
-      <img class="card-img" :src="image" alt="" />
+      <img v-if="image" class="card-img" :src="image" alt="" />
+      <img v-else class="card-img" src="../assets/placeholder.png" alt="" />
 
       <h4 class="card-title">
         {{ title }}
@@ -37,6 +38,7 @@ export default {
   width: 100%;
   border-radius: 1em;
   height: 70%;
+  object-fit: cover;
 }
 .card-title {
   margin-top: 0.5em;
