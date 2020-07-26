@@ -2,7 +2,11 @@
   <div id="app">
     <Nav @search-input="searchInputHandler" />
     <main>
-      <router-view :recipes="filteredRecipes" v-on:add="handleNewList" />
+      <router-view
+        :recipes="filteredRecipes"
+        v-on:add="handleNewList"
+        @delete-card="deleteCard"
+      />
     </main>
   </div>
 </template>
@@ -21,9 +25,10 @@ export default {
       this.recipes.push(recipe);
     },
     searchInputHandler: function(input) {
-      console.log(input);
       this.searchInput = input;
-      console.log(this.searchInput);
+    },
+    deleteCard: function(id) {
+      this.recipes = this.recipes.filter((recipe) => recipe.id !== id);
     },
   },
   computed: {
