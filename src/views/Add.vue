@@ -430,4 +430,13 @@ input[type="number"] {
 .ingredients-list li {
   margin-bottom: 1em;
 }
+
+@media (max-width: 800px) {
+  .two-col {
+    flex-direction: column;
+  }
+  .add-text {
+    width: auto;
+  }
+}
 </style>
