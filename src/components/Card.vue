@@ -36,15 +36,20 @@ export default {
 .card {
   display: flex;
 }
+.card:hover {
+  transform: scale(1.01);
+}
 .card-img {
   width: 100%;
   border-radius: 1em;
   height: 70%;
   object-fit: cover;
 }
+
 .card-title {
   margin-top: 0.5em;
 }
+
 .row-2 {
   display: flex;
   justify-content: space-between;
