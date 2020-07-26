@@ -23,7 +23,13 @@
       </ul>
     </div>
     <div class="image">
-      <img class="recipe-img" :src="selectedRecipe.image" alt="" />
+      <img
+        v-if="selectedRecipe.image"
+        class="recipe-img"
+        :src="selectedRecipe.image"
+        alt=""
+      />
+      <img v-else class="recipe-img" src="../assets/placeholder.png" />
       <h4 class="recipe-subtitle">Steps</h4>
       <ol class="recipe-list">
         <li
@@ -70,11 +76,19 @@ export default {
 }
 
 .recipe-subtitle {
-  margin-bottom: 1em;
+  margin: 1em 0;
+}
+
+.details .recipe-subtitle {
+  font-weight: 400;
 }
 
 .details .recipe-subtitle:last-of-type {
   margin-bottom: 0;
+}
+
+.details .recipe-subtitle:first-of-type {
+  margin-top: 0;
 }
 
 .recipe-list {
