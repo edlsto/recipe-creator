@@ -129,4 +129,10 @@ export default {
   color: white;
   padding: 0.5em;
 }
+
+@media (max-width: 800px) {
+  .recipe-main {
+    flex-direction: column;
+  }
+}
 </style>
