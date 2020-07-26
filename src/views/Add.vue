@@ -9,11 +9,27 @@
     </ul>
     <div>
       Ingredient:
-      <input v-model="newIngredient" type="text" v-on:keyup.enter="onSubmit" />
+      <input
+        v-model="newIngredient"
+        type="text"
+        v-on:keyup.enter="onSubmitIngredient"
+      />
     </div>
-    <button v-on:click="onSubmit">Add</button>
-    <div>Step: <input v-model="newStep" type="text" /></div>
-    <button>Add</button>
+    <button v-on:click="onSubmitIngredient">Add</button>
+    <ul>
+      <li v-for="(step, index) in newRecipe.steps" :key="index">
+        {{ step }}
+      </li>
+    </ul>
+    <div>
+      Step:
+      <input
+        v-model="newStep"
+        type="text"
+        v-on:keyup.enter="onSubmitIngredient"
+      />
+    </div>
+    <button v-on:click="onSubmitStep">Add</button>
     <div>Prep time: <input v-model="newRecipe.prepTime" type="number" /></div>
     <div>Serves: <input v-model="newRecipe.serves" type="number" /></div>
 
@@ -36,7 +52,7 @@ export default {
       newRecipe: {
         title: "",
         ingredients: [],
-        steps: ["step 1", "step 2", "step 3"],
+        steps: [],
         cookTime: null,
         prepTime: null,
         serves: null,
@@ -48,9 +64,13 @@ export default {
     };
   },
   methods: {
-    onSubmit: function() {
+    onSubmitIngredient: function() {
       this.newRecipe.ingredients.push(this.newIngredient);
       this.newIngredient = "";
+    },
+    onSubmitStep: function() {
+      this.newRecipe.steps.push(this.newStep);
+      this.newStep = "";
     },
     submitList: function() {
       this.$emit("add", this.newRecipe);
