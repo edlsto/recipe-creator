@@ -2,6 +2,15 @@
   <div class="about">
     <div class="text">
       <h1 class="recipe-title">{{ selectedRecipe.title }}</h1>
+      <div class="details">
+        <h4 class="recipe-subtitle">
+          Prep time: {{ selectedRecipe.prepTime }} minutes
+        </h4>
+        <h4 class="recipe-subtitle">
+          Cook time: {{ selectedRecipe.cookTime }} minutes
+        </h4>
+        <h4 class="recipe-subtitle">Serves: {{ selectedRecipe.serves }}</h4>
+      </div>
       <h4 class="recipe-subtitle">Ingredients</h4>
       <ul class="recipe-list">
         <li
@@ -12,6 +21,9 @@
           {{ ingredient }}
         </li>
       </ul>
+    </div>
+    <div class="image">
+      <img class="recipe-img" :src="selectedRecipe.image" alt="" />
       <h4 class="recipe-subtitle">Steps</h4>
       <ol class="recipe-list">
         <li
@@ -22,20 +34,6 @@
           {{ step }}
         </li>
       </ol>
-    </div>
-    <div class="image">
-      <img class="recipe-img" :src="selectedRecipe.image" alt="" />
-      <div class="details">
-        <div>
-          <h4 class="recipe-subtitle">
-            Prep time: {{ selectedRecipe.prepTime }} minutes
-          </h4>
-          <h4 class="recipe-subtitle">
-            Cook time: {{ selectedRecipe.cookTime }} minutes
-          </h4>
-        </div>
-        <h4 class="recipe-subtitle">Serves: {{ selectedRecipe.serves }}</h4>
-      </div>
     </div>
   </div>
 </template>
@@ -58,10 +56,14 @@ export default {
 }
 .about {
   display: flex;
+  justify-content: space-between;
 }
 
 .text {
   flex: 0 0 40%;
+}
+.image {
+  flex: 0 0 55%;
 }
 .recipe-title {
   margin-bottom: 0.5em;
@@ -70,14 +72,19 @@ export default {
 .recipe-subtitle {
   margin-bottom: 1em;
 }
+
+.details .recipe-subtitle:last-of-type {
+  margin-bottom: 0;
+}
+
 .recipe-list {
   margin-bottom: 1em;
 }
 
 .details {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 1em;
+  margin: 1em 0;
+  background: rgb(233, 249, 255);
+  padding: 1em;
 }
 
 .recipe-item {
