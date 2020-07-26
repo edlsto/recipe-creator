@@ -13,13 +13,32 @@
 
       <router-link to="/add" class="nav-link">Add new recipe</router-link>
 
-      <input type="text" class="search" />
+      <input
+        type="text"
+        class="search"
+        v-model="search"
+        v-on:keyup="setSearch"
+        placeholder="Search by recipe title"
+      />
     </div>
   </div>
 </template>
 
 <script>
-export default { name: "Nav" };
+export default {
+  name: "Nav",
+  methods: {
+    setSearch: function() {
+      console.log("fired");
+      this.$emit("search-input", this.search);
+    },
+  },
+  data() {
+    return {
+      search: "",
+    };
+  },
+};
 </script>
 
 <style>
@@ -67,10 +86,16 @@ a {
   background: 4% / 8% no-repeat url("../assets/search.png");
   background-color: rgb(233, 233, 233);
   padding-left: 2.3em;
-  font-size: 1.3em;
+  font-size: 1em;
   outline: none;
 }
 .nav-link.router-link-exact-active {
   border-bottom: 3px solid rgb(123, 216, 146);
+  margin-bottom: -3px;
+}
+
+.nav-link:hover {
+  border-bottom: 6px solid rgb(123, 216, 146);
+  margin-bottom: -6px;
 }
 </style>
