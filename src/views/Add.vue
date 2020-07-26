@@ -1,47 +1,100 @@
 <template>
-  <div class="about">
-    <div>Recipe name: <input v-model="newRecipe.title" type="text" /></div>
-    <div>Cook time: <input v-model="newRecipe.cookTime" type="number" /></div>
-    <ul>
-      <li v-for="(ingredient, index) in newRecipe.ingredients" :key="index">
-        {{ ingredient }}
-      </li>
-    </ul>
-    <div>
-      Ingredient:
-      <input
-        v-model="newIngredient"
-        type="text"
-        v-on:keyup.enter="onSubmitIngredient"
-      />
-    </div>
-    <button v-on:click="onSubmitIngredient">Add</button>
-    <ul>
-      <li v-for="(step, index) in newRecipe.steps" :key="index">
-        {{ step }}
-      </li>
-    </ul>
-    <div>
-      Step:
-      <input
-        v-model="newStep"
-        type="text"
-        v-on:keyup.enter="onSubmitIngredient"
-      />
-    </div>
-    <button v-on:click="onSubmitStep">Add</button>
-    <div>Prep time: <input v-model="newRecipe.prepTime" type="number" /></div>
-    <div>Serves: <input v-model="newRecipe.serves" type="number" /></div>
+  <div class="add">
+    <div class="add-text">
+      <h1 class="recipe-title">Add a new recipe</h1>
+      <div class="add-item">
+        <label for="title">Recipe name:</label>
+        <input
+          class="add-item-input"
+          v-model="newRecipe.title"
+          type="text"
+          id="title"
+        />
+      </div>
 
-    <div v-if="!newRecipe.image">
-      <h4>Select an image</h4>
-      <input type="file" @change="onFileChange(newRecipe, $event)" />
+      <div class="add-item">
+        <label for="cook-time">Cook time:</label>
+        <input
+          class="add-item-input"
+          v-model="newRecipe.cookTime"
+          type="number"
+          id="cook-time"
+        />
+      </div>
+      <div class="add-item">
+        <ul v-if="newRecipe.ingredients.length">
+          <li v-for="(ingredient, index) in newRecipe.ingredients" :key="index">
+            {{ ingredient }}
+          </li>
+        </ul>
+        <div class="form-row">
+          <label for="ingredient">Ingredient:</label>
+          <div class="input-btn-container">
+            <input
+              v-model="newIngredient"
+              class="add-item-input"
+              type="text"
+              v-on:keyup.enter="onSubmitIngredient"
+              id="ingredient"
+            />
+            <button v-on:click="onSubmitIngredient" class="add-item-button">
+              Add
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="add-item">
+        <ul v-if="newRecipe.steps.length">
+          <li v-for="(step, index) in newRecipe.steps" :key="index">
+            {{ step }}
+          </li>
+        </ul>
+        <div class="form-row">
+          <label for="step">Step:</label>
+          <div class="input-btn-container">
+            <input
+              v-model="newStep"
+              type="text"
+              v-on:keyup.enter="onSubmitStep"
+              class="add-item-input"
+              id="step"
+            />
+            <button v-on:click="onSubmitStep" class="add-item-button">
+              Add
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="add-item">
+        <label for="prep-time|">Prep time:</label>
+        <input
+          v-model="newRecipe.prepTime"
+          type="number"
+          class="add-item-input"
+          id="prep-time"
+        />
+      </div>
+      <div class="add-item">
+        <label for="serves">Serves:</label>
+        <input
+          v-model="newRecipe.serves"
+          type="number"
+          class="add-item-input"
+          id="serves"
+        />
+      </div>
     </div>
-    <div v-else>
-      <img :src="newRecipe.image" class="img-preview" />
-      <button @click="removeImage(newRecipe)">Remove image</button>
+    <div class="add-image">
+      <div v-if="!newRecipe.image">
+        <h4>Select an image</h4>
+        <input type="file" @change="onFileChange(newRecipe, $event)" />
+      </div>
+      <div v-else>
+        <img :src="newRecipe.image" class="img-preview" />
+        <button @click="removeImage(newRecipe)">Remove image</button>
+      </div>
+      <button v-on:click="submitList">Submit</button>
     </div>
-    <button v-on:click="submitList">Submit</button>
   </div>
 </template>
 
@@ -99,8 +152,46 @@ export default {
 </script>
 
 <style>
+.add {
+  display: flex;
+  justify-content: space-between;
+}
 .img-preview {
-  width: 10em;
+  width: 100%;
   display: block;
+}
+.add-item {
+  margin-bottom: 1em;
+  display: flex;
+  justify-content: space-between;
+}
+
+.add-item-input {
+  height: 2em;
+  flex: 1 0 auto;
+}
+.form-row {
+  display: flex;
+  justify-content: space-between;
+  flex: 1 0 auto;
+}
+
+.add-item-button {
+  margin-left: 1em;
+}
+
+.add-text {
+  display: flex;
+  flex-direction: column;
+  width: 20em;
+}
+
+.input-btn-container {
+  flex: 1 0 auto;
+  display: flex;
+}
+
+label {
+  margin-right: 1em;
 }
 </style>
