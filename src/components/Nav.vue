@@ -11,7 +11,7 @@
     <div class="nav-links">
       <router-link to="/" class="nav-link">All recipes</router-link>
 
-      <router-link to="/add" class="nav-link">Add</router-link>
+      <router-link to="/add" class="nav-link">Add new recipe</router-link>
 
       <input type="text" class="search" />
     </div>
