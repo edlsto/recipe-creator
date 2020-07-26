@@ -4,29 +4,16 @@
 
     <div class="two-col">
       <div class="add-text">
-        <div v-if="!newRecipe.title" class="add-item">
+        <div class="add-item">
           <h4 class="section-title">Recipe name</h4>
           <input
             class="add-item-input"
-            v-model="newTitle"
+            v-model="newRecipe.title"
             type="text"
             id="title"
             placeholder="Add name"
             v-on:keyup.enter="onSubmitTitle"
           />
-          <button
-            v-on:click="onSubmitTitle"
-            class="add-item-button add-button-below"
-            :disabled="!newTitle"
-          >
-            Save
-          </button>
-        </div>
-        <div v-else class="add-item add-item-title">
-          <h1 class="recipe-add-name">
-            {{ newRecipe.title }}
-          </h1>
-          <button v-on:click="onEdit" class="edit-title-btn">Edit</button>
         </div>
 
         <div class="add-item">
@@ -188,7 +175,6 @@ export default {
       },
       newIngredient: "",
       newStep: "",
-      newTitle: "",
       validationFailed: false,
     };
   },
