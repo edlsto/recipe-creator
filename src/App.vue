@@ -1,8 +1,8 @@
 <template>
   <div id="app">
-    <Nav />
+    <Nav @search-input="searchInputHandler" />
     <main>
-      <router-view :recipes="recipes" v-on:add="handleNewList" />
+      <router-view :recipes="filteredRecipes" v-on:add="handleNewList" />
     </main>
   </div>
 </template>
@@ -20,9 +20,25 @@ export default {
     handleNewList: function(recipe) {
       this.recipes.push(recipe);
     },
+    searchInputHandler: function(input) {
+      console.log(input);
+      this.searchInput = input;
+      console.log(this.searchInput);
+    },
+  },
+  computed: {
+    filteredRecipes() {
+      let filteredList = this.recipes.filter((recipe) => {
+        return recipe.title
+          .toLowerCase()
+          .includes(this.searchInput.toLowerCase());
+      });
+      return filteredList;
+    },
   },
   data() {
     return {
+      searchInput: "",
       recipes: [
         {
           id: 1,
