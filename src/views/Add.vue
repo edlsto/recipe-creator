@@ -1,65 +1,81 @@
 <template>
   <div class="add">
+    <h1 class="recipe-title">Add a new recipe</h1>
+
     <div class="two-col">
       <div class="add-text">
-        <h1 class="recipe-title">Add a new recipe</h1>
-        <div class="add-item">
+        <div v-if="!newRecipe.title" class="add-item">
           <label for="title">Recipe name:</label>
           <input
             class="add-item-input"
-            v-model="newRecipe.title"
+            v-model="newTitle"
             type="text"
             id="title"
+            placeholder="Add name"
           />
+          <button v-on:click="onSubmitTitle" class="add-item-button">
+            Add
+          </button>
+        </div>
+        <div v-else>
+          <h1>
+            {{ newRecipe.title }}
+          </h1>
         </div>
 
         <div class="add-item stack">
-          <h4>Ingredients</h4>
-          <ul>
-            <li v-if="!newRecipe.ingredients.length">No ingredients added</li>
+          <h4 class="section-title">Ingredients</h4>
+          <ul class="ingredients-list">
+            <p class="no-ingredients" v-if="!newRecipe.ingredients.length">
+              No ingredients added
+            </p>
             <li
               v-for="(ingredient, index) in newRecipe.ingredients"
               :key="index"
             >
               {{ ingredient }}
             </li>
-          </ul>
-          <div class="form-row">
-            <label for="ingredient">New ingredient:</label>
-            <div class="input-btn-container">
-              <input
-                v-model="newIngredient"
-                class="add-item-input"
-                type="text"
-                v-on:keyup.enter="onSubmitIngredient"
-                id="ingredient"
-              />
+            <div class="form-row">
+              <div class="input-btn-container">
+                <input
+                  placeholder="Add ingredient"
+                  v-model="newIngredient"
+                  class="add-item-input"
+                  type="text"
+                  v-on:keyup.enter="onSubmitIngredient"
+                  id="ingredient"
+                />
+                <button v-on:click="onSubmitIngredient" class="add-item-button">
+                  Add
+                </button>
+              </div>
             </div>
-          </div>
-          <button v-on:click="onSubmitIngredient" class="add-item-button">
-            Add
-          </button>
+          </ul>
         </div>
         <div class="add-item stack">
-          <ul v-if="newRecipe.steps.length">
+          <h4 class="section-title">Steps</h4>
+          <ol class="ingredients-list">
+            <p class="no-ingredients" v-if="!newRecipe.steps.length">
+              No steps added
+            </p>
             <li v-for="(step, index) in newRecipe.steps" :key="index">
               {{ step }}
             </li>
-          </ul>
-          <div class="form-row">
-            <label for="step">Step:</label>
-            <div class="input-btn-container">
-              <textarea
-                v-model="newStep"
-                type="text"
-                v-on:keyup.enter="onSubmitStep"
-                id="step"
-              />
+            <div class="form-row">
+              <div class="input-btn-container">
+                <textarea
+                  placeholder="Add step"
+                  v-model="newStep"
+                  type="text"
+                  v-on:keyup.enter="onSubmitStep"
+                  id="step"
+                />
+              </div>
             </div>
-          </div>
-          <button v-on:click="onSubmitStep" class="add-item-button">
-            Add
-          </button>
+            <button v-on:click="onSubmitStep" class="add-item-button">
+              Add
+            </button>
+          </ol>
         </div>
         <div class="add-item">
           <label for="prep-time|">Prep time:</label>
@@ -90,8 +106,11 @@
         </div>
       </div>
       <div class="add-image">
+        <h4>Select an image</h4>
+
         <div v-if="!newRecipe.image">
-          <h4>Select an image</h4>
+          <img src="../assets/placeholder.png" class="img-preview" />
+
           <input type="file" @change="onFileChange(newRecipe, $event)" />
         </div>
         <div v-else>
@@ -105,6 +124,8 @@
 </template>
 
 <script>
+// import Placeholder from "../assets/placeholder.png";
+
 export default {
   data() {
     return {
@@ -120,6 +141,7 @@ export default {
       },
       newIngredient: "",
       newStep: "",
+      newTitle: "",
     };
   },
   methods: {
@@ -130,6 +152,10 @@ export default {
     onSubmitStep: function() {
       this.newRecipe.steps.push(this.newStep);
       this.newStep = "";
+    },
+    onSubmitTitle: function() {
+      this.newRecipe.title = this.newTitle;
+      this.newTitle = "";
     },
     submitList: function() {
       this.$emit("add", this.newRecipe);
@@ -158,6 +184,9 @@ export default {
 </script>
 
 <style>
+.recipe-title {
+  margin: 1em auto;
+}
 .submit {
   align-self: center;
 }
@@ -196,7 +225,7 @@ export default {
 }
 
 .add-item-button {
-  margin: 1em 0 0 1em;
+  margin-left: 1em;
   align-self: center;
 }
 
@@ -209,6 +238,7 @@ export default {
 .input-btn-container {
   flex: 1 0 auto;
   display: flex;
+  margin-top: 1em;
 }
 
 .add-image {
@@ -222,5 +252,21 @@ label {
 textarea {
   height: 100px;
   flex: 1 0 auto;
+}
+
+.ingredients-list {
+  background: rgb(233, 249, 255);
+  display: flex;
+  padding: 2em;
+  list-style-position: inside;
+  flex-direction: column;
+}
+
+.no-ingredients {
+  margin: 0 auto;
+}
+
+.section-title {
+  margin-bottom: 0.5em;
 }
 </style>
