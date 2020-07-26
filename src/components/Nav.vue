@@ -70,4 +70,7 @@ a {
   font-size: 1.3em;
   outline: none;
 }
+.nav-link.router-link-exact-active {
+  border-bottom: 3px solid rgb(123, 216, 146);
+}
 </style>
