@@ -43,7 +43,8 @@
         </ol>
       </div>
     </div>
-    <button class="delete" v-on:click="deleteCard">Delete</button>
+    <button class="edit" v-on:click="editRecipe">Delete</button>
+    <button class="delete" v-on:click="deleteRecipe">Delete</button>
   </div>
 </template>
 
@@ -56,9 +57,15 @@ export default {
     },
   },
   methods: {
-    deleteCard: function() {
+    deleteRecipe: function() {
       this.$emit("delete-card", this.selectedRecipe.id);
       this.$router.push({ name: "Home" });
+    },
+    editRecipe: function() {
+      this.$router.push({
+        name: "Edit",
+        params: { recipe: this.selectedRecipe },
+      });
     },
   },
 };
