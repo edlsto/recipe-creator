@@ -1,6 +1,6 @@
 # MealDeck
 
-MealDeck is a recipe creator/organizer app. The user can input recipes with a title, image, ingredients, steps, prep time, cooking time and serving size.
+MealDeck is a recipe creator/organizer app. The user can input recipes with a title, image, ingredients, steps, prep time, cooking time and serving size, and then view the recipes.
 
 The user can also search for recipes, sort recipes, edit recipes and delete recipes.
 
