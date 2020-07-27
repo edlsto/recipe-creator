@@ -16,6 +16,7 @@ import Nav from "./components/Nav.vue";
 import TacosImg from "./assets/tacos.jpg";
 import SoupImg from "./assets/butternut-squash-soup.jpg";
 import ToastImg from "./assets/avocado-toast.jpg";
+import SPImg from "./assets/sweet-potato.png";
 export default {
   components: {
     Nav,
@@ -123,6 +124,31 @@ export default {
           cookTime: 10,
           serves: 4,
           image: ToastImg,
+        },
+        {
+          id: 4,
+          title: "Sweet Potato Casserole Dessert",
+          ingredients: [
+            "4 ½ cups cooked and mashed sweet potatoes",
+            "½ cup butter, melted",
+            "⅓ cup milk",
+            "1 cup white sugar",
+            "½ teaspoon vanilla extract  ",
+            "2 eggs, beaten",
+            "1 cup light brown sugar",
+            "½ cup all-purpose flour",
+            "⅓ cup butter",
+            "1 cup chopped pecans",
+          ],
+          steps: [
+            "Preheat oven to 350 degrees F (175 degrees C). Grease a 9x13 inch baking dish.",
+            "In a large bowl, mix together mashed sweet potatoes, 1/2 cup butter, milk, sugar, vanilla extract, and eggs. Spread sweet potato mixture into the prepared baking dish. In a small bowl, mix together brown sugar and flour. Cut in 1/3 cup butter until mixture is crumbly, then stir in pecans. Sprinkle pecan mixture over the sweet potatoes.",
+            "Bake for 25 minutes in the preheated oven, or until golden brown.",
+          ],
+          prepTime: 20,
+          cookTime: 25,
+          serves: 16,
+          image: SPImg,
         },
       ],
     };
