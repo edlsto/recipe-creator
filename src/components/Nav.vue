@@ -89,7 +89,7 @@ a {
   font-size: 1em;
   outline: none;
 }
-/* .nav-link.router-link-exact-active {
+.nav-link.router-link-exact-active {
   border-bottom: 3px solid rgb(123, 216, 146);
   margin-bottom: -3px;
 }
@@ -97,7 +97,7 @@ a {
 .nav-link:hover {
   border-bottom: 6px solid rgb(123, 216, 146);
   margin-bottom: -6px;
-} */
+}
 
 @media (max-width: 1000px) {
   .nav {
@@ -127,6 +127,15 @@ a {
 
   .main {
     margin: 0 auto 4em;
+  }
+  .nav-link.router-link-exact-active {
+    border-bottom: none;
+    margin-bottom: none;
+  }
+
+  .nav-link:hover {
+    border-bottom: none;
+    margin-bottom: none;
   }
 }
 </style>
