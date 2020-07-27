@@ -1,8 +1,6 @@
 <template>
   <div id="home">
-    <main>
-      <CardsContainer :recipes="recipes" />
-    </main>
+    <CardsContainer :recipes="recipes" />
   </div>
 </template>
 
@@ -16,5 +14,3 @@ export default {
   props: ["recipes"],
 };
 </script>
-
-<style></style>
