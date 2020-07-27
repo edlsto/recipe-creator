@@ -1,5 +1,5 @@
 <template>
-  <div class="cards-container" v-if="recipes.length > 0">
+  <div v-if="recipes.length > 0" class="cards-container">
     <Card
       v-for="recipe in recipes"
       v-bind:key="recipe.id"
@@ -10,8 +10,14 @@
       v-bind:prepTime="recipe.prepTime"
       v-bind:cookTime="recipe.cookTime"
       v-bind:image="recipe.image"
-    /></div
-></template>
+    />
+  </div>
+  <div v-else class="no-recipes">
+    <h2>
+      You have no recipes
+    </h2>
+  </div>
+</template>
 
 <script>
 import Card from "./Card";
@@ -32,5 +38,12 @@ export default {
   width: 95%;
   column-gap: 4em;
   row-gap: 3em;
+}
+
+.no-recipes {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10em;
 }
 </style>
