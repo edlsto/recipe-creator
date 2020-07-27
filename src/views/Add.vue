@@ -33,9 +33,11 @@
               >
                 {{ ingredient }}
               </li>
-              <button v-on:click="deleteItem(index)" class="delete-btn">
-                Delete
-              </button>
+              <img
+                v-on:click="deleteItem(index)"
+                class="delete-btn"
+                src="../assets/delete.png"
+              />
             </div>
             <div class="input-btn-container">
               <input
@@ -62,21 +64,34 @@
             <p class="no-ingredients" v-if="!newRecipe.steps.length">
               No steps added
             </p>
-            <div v-for="(step, index) in newRecipe.steps" :key="index">
+            <div
+              v-for="(step, index) in newRecipe.steps"
+              :key="index"
+              class="steps-container"
+            >
               <li contenteditable="true" v-on:blur="editStep(index, $event)">
                 {{ step }}
               </li>
               <div class="move-delete-button-row">
-                <button v-on:click="deleteStep(index)">Delete</button>
-                <button v-if="index > 0" v-on:click="moveUp(index, $event)">
-                  Move up
-                </button>
-                <button
+                <img
+                  v-if="index > 0"
+                  v-on:click="moveUp(index, $event)"
+                  src="../assets/up.png"
+                  class="delete-btn"
+                />
+
+                <img
                   v-if="index < newRecipe.steps.length - 1"
                   v-on:click="moveDown(index, $event)"
-                >
-                  Move down
-                </button>
+                  src="../assets/down.png"
+                  class="delete-btn"
+                />
+
+                <img
+                  v-on:click="deleteStep(index)"
+                  class="delete-btn"
+                  src="../assets/delete.png"
+                />
               </div>
             </div>
 
@@ -270,12 +285,11 @@ export default {
       this.newRecipe.steps.splice(index, 1);
     },
     moveUp: function(index, event) {
-      console.log(event.target.parentElement.firstChild.innerHTML);
       this.newRecipe.steps.splice(index, 1);
       this.newRecipe.steps.splice(
         index - 1,
         0,
-        event.target.parentElement.firstChild.innerHTML
+        event.target.parentElement.parentElement.firstChild.innerHTML
       );
     },
     moveDown: function(index, event) {
@@ -283,7 +297,7 @@ export default {
       this.newRecipe.steps.splice(
         index + 1,
         0,
-        event.target.parentElement.firstChild.innerHTML
+        event.target.parentElement.parentElement.firstChild.innerHTML
       );
     },
   },
@@ -388,7 +402,7 @@ textarea {
 .ingredients-list {
   background: rgb(233, 249, 255);
   display: flex;
-  padding: 0 2em 2em;
+  padding: 2em;
   list-style-position: inside;
   flex-direction: column;
 }
@@ -483,18 +497,27 @@ input[type="number"] {
 }
 
 .delete-btn {
-  margin: 0 auto;
   display: block;
+  height: 1em;
+  cursor: pointer;
 }
 
 .ingredient-container {
   margin-bottom: 1em;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .move-delete-button-row {
   display: flex;
-  justify-content: space-around;
-  margin: 1em 0;
+  justify-content: flex-end;
+  margin: 0.5em 0;
+}
+
+.steps-container {
+  display: flex;
+  justify-content: space-between;
 }
 
 @media (max-width: 800px) {
