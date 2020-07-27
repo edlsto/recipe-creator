@@ -22,7 +22,12 @@ export default {
   },
   methods: {
     handleNewList: function(recipe) {
-      this.recipes.push(recipe);
+      const index = this.recipes.findIndex((rec) => rec.id === recipe.id);
+      if (index > -1) {
+        this.recipes[index] = recipe;
+      } else {
+        this.recipes.push(recipe);
+      }
     },
     searchInputHandler: function(input) {
       this.searchInput = input;
