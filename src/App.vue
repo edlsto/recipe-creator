@@ -2,14 +2,12 @@
   <div id="app">
     <Nav @search-input="searchInputHandler" />
     <main>
-      <div>
-        <router-view
-          :recipes="filteredRecipes"
-          v-on:add="handleNewList"
-          v-on:filter="handleFilter"
-          @delete-card="deleteCard"
-        />
-      </div>
+      <router-view
+        :recipes="filteredRecipes"
+        v-on:add="handleNewList"
+        v-on:filter="handleFilter"
+        @delete-card="deleteCard"
+      />
     </main>
   </div>
 </template>
@@ -210,6 +208,9 @@ main {
   margin: 2rem auto 4rem;
   max-width: 90vw;
   width: 900px;
+  flex: 1 0 auto;
+  display: flex;
+  flex-direction: column;
 }
 
 h1,
@@ -227,5 +228,7 @@ h1 {
 
 #app {
   height: 100%;
+  display: flex;
+  flex-direction: column;
 }
 </style>
