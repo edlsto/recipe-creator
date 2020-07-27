@@ -19,19 +19,19 @@ The user can also search for recipes, sort recipes, edit recipes and delete reci
 
 ## Screenshots
 
-![Home page](https://user-images.githubusercontent.com/4350550/88573380-de365680-cffd-11ea-8626-cc1d2869632c.png)
+![Home page](https://user-images.githubusercontent.com/4350550/88592231-ea7cdc80-d01a-11ea-99f8-f8a9df201280.png)
 
 From the home screen, the user can view all recipes. The user can search for recipes, as well as sort them.
 
-![View recipe](https://user-images.githubusercontent.com/4350550/88586829-370fea00-d012-11ea-8368-a88ec3c77e04.png)
+![View recipe](https://user-images.githubusercontent.com/4350550/88592224-e81a8280-d01a-11ea-9871-147a25b6b090.png)
 
 The recipe page shows all of the details for the recipe, as well as links to edit or delete the recipe.
 
-![Add recipe](https://user-images.githubusercontent.com/4350550/88573379-de365680-cffd-11ea-9a76-26a56c8cd840.png)
+![Add recipe](https://user-images.githubusercontent.com/4350550/88592219-e650bf00-d01a-11ea-89c0-459bba0ff8b4.png)
 
 The user can click on "add recipe" to input a new recipe, including a title, ingredients, steps, image and times.
 
-![Edit recipe](https://user-images.githubusercontent.com/4350550/88573372-dc6c9300-cffd-11ea-9ced-eb0678dc12c6.png)
+![Edit recipe](https://user-images.githubusercontent.com/4350550/88592234-eb157300-d01a-11ea-9b9d-fea5560fee9c.png)
 
 The user can edit a recipe, including the title, ingredients, steps, step order, cooking times, serving size and image.
 
