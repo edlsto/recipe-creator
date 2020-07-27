@@ -1,5 +1,5 @@
 <template>
-  <div v-if="recipes.length > 0" class="cards-container">
+  <div class="cards-container">
     <Card
       v-for="recipe in recipes"
       v-bind:key="recipe.id"
@@ -11,11 +11,6 @@
       v-bind:cookTime="recipe.cookTime"
       v-bind:image="recipe.image"
     />
-  </div>
-  <div v-else class="no-recipes">
-    <h2>
-      You have no recipes
-    </h2>
   </div>
 </template>
 
