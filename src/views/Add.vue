@@ -84,12 +84,12 @@
                   v-if="index < newRecipe.steps.length - 1"
                   v-on:click="moveDown(index, $event)"
                   src="../assets/down.png"
-                  class="delete-btn"
+                  class="delete-btn up-down-btn"
                 />
 
                 <img
                   v-on:click="deleteStep(index)"
-                  class="delete-btn"
+                  class="delete-btn up-down-btn"
                   src="../assets/delete.png"
                 />
               </div>
@@ -518,6 +518,10 @@ input[type="number"] {
 .steps-container {
   display: flex;
   justify-content: space-between;
+}
+
+.up-down-btn {
+  margin-left: 0.3em;
 }
 
 @media (max-width: 800px) {
