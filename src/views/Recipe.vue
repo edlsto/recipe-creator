@@ -43,8 +43,10 @@
         </ol>
       </div>
     </div>
-    <button class="edit" v-on:click="editRecipe">Delete</button>
-    <button class="delete" v-on:click="deleteRecipe">Delete</button>
+    <div class="edit-delete">
+      <button class="delete edit" v-on:click="editRecipe">Edit</button>
+      <button class="delete" v-on:click="deleteRecipe">Delete</button>
+    </div>
   </div>
 </template>
 
@@ -135,6 +137,16 @@ export default {
   border: none;
   color: white;
   padding: 0.5em;
+}
+
+.edit {
+  background: rgb(178, 202, 39);
+  margin-right: 1em;
+}
+
+.edit-delete {
+  display: flex;
+  justify-content: center;
 }
 
 @media (max-width: 800px) {
