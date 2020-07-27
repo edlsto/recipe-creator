@@ -129,18 +129,32 @@ export default {
 .delete {
   align-self: center;
   font-size: 1.2em;
-  background: rgb(187, 44, 44);
+  background: white;
+  color: rgb(187, 44, 44);
+  border: 1px solid rgb(187, 44, 44);
   outline: none;
   cursor: pointer;
   border-radius: 0;
-  border: none;
-  color: white;
   padding: 0.5em;
 }
 
+.delete:hover {
+  background: rgb(187, 44, 44);
+  color: white;
+  border: 1px solid white;
+}
+
 .edit {
-  background: rgb(178, 202, 39);
+  background: white;
   margin-right: 1em;
+  color: rgb(178, 202, 39);
+  border: 1px solid rgb(178, 202, 39);
+}
+
+.edit:hover {
+  background: rgb(178, 202, 39);
+  color: white;
+  border: 1px solid white;
 }
 
 .edit-delete {
