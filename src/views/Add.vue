@@ -25,6 +25,7 @@
             <div
               v-for="(ingredient, index) in newRecipe.ingredients"
               :key="index"
+              class="ingredient-container"
             >
               <li
                 contenteditable="true"
@@ -32,7 +33,9 @@
               >
                 {{ ingredient }}
               </li>
-              <button v-on:click="deleteItem(index)">Delete</button>
+              <button v-on:click="deleteItem(index)" class="delete-btn">
+                Delete
+              </button>
             </div>
             <div class="input-btn-container">
               <input
@@ -63,16 +66,18 @@
               <li contenteditable="true" v-on:blur="editStep(index, $event)">
                 {{ step }}
               </li>
-              <button v-on:click="deleteStep(index)">Delete</button>
-              <button v-if="index > 0" v-on:click="moveUp(index, $event)">
-                Move up
-              </button>
-              <button
-                v-if="index < newRecipe.steps.length - 1"
-                v-on:click="moveDown(index, $event)"
-              >
-                Move down
-              </button>
+              <div class="move-delete-button-row">
+                <button v-on:click="deleteStep(index)">Delete</button>
+                <button v-if="index > 0" v-on:click="moveUp(index, $event)">
+                  Move up
+                </button>
+                <button
+                  v-if="index < newRecipe.steps.length - 1"
+                  v-on:click="moveDown(index, $event)"
+                >
+                  Move down
+                </button>
+              </div>
             </div>
 
             <textarea
@@ -383,7 +388,7 @@ textarea {
 .ingredients-list {
   background: rgb(233, 249, 255);
   display: flex;
-  padding: 2em;
+  padding: 0 2em 2em;
   list-style-position: inside;
   flex-direction: column;
 }
@@ -473,12 +478,23 @@ input[type="number"] {
   align-self: center;
 }
 
-.ingredients-list li {
+[contenteditable]:focus {
+  background: white;
+}
+
+.delete-btn {
+  margin: 0 auto;
+  display: block;
+}
+
+.ingredient-container {
   margin-bottom: 1em;
 }
 
-[contenteditable]:focus {
-  background: white;
+.move-delete-button-row {
+  display: flex;
+  justify-content: space-around;
+  margin: 1em 0;
 }
 
 @media (max-width: 800px) {
