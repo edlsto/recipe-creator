@@ -2,7 +2,7 @@
   <div id="app">
     <Nav @search-input="searchInputHandler" />
     <main>
-      <div v-if="filteredRecipes.length > 0">
+      <div>
         <router-view
           :recipes="filteredRecipes"
           v-on:add="handleNewList"
@@ -10,22 +10,13 @@
           @delete-card="deleteCard"
         />
       </div>
-      <div v-else-if="filteredRecipes.length === 0 && searchInput === ''">
-        <h2 class="no-recipes">
-          You have no recipes
-        </h2>
-      </div>
-      <div v-else class="no-recipes">
-        <h2>
-          No search results
-        </h2>
-      </div>
     </main>
   </div>
 </template>
 
 <script>
 import Nav from "./components/Nav.vue";
+
 import TacosImg from "./assets/tacos.jpg";
 import SoupImg from "./assets/butternut-squash-soup.jpg";
 import ToastImg from "./assets/avocado-toast.jpg";
@@ -75,6 +66,13 @@ export default {
           let aTime = parseInt(a.cookTime) + parseInt(a.prepTime);
           let bTime = parseInt(b.cookTime) + parseInt(b.prepTime);
           return aTime < bTime ? -1 : aTime > bTime ? 1 : 0;
+        });
+      }
+      if (this.filter === "Time-Dsc") {
+        filteredList = filteredList.sort((a, b) => {
+          let aTime = parseInt(a.cookTime) + parseInt(a.prepTime);
+          let bTime = parseInt(b.cookTime) + parseInt(b.prepTime);
+          return aTime > bTime ? -1 : aTime < bTime ? 1 : 0;
         });
       }
       return filteredList;
@@ -225,5 +223,9 @@ h6 {
 
 h1 {
   font-family: "Domine", serif;
+}
+
+#app {
+  height: 100%;
 }
 </style>
