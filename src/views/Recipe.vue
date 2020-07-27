@@ -66,7 +66,6 @@ export default {
     editRecipe: function() {
       this.$router.push({
         name: "Edit",
-        params: { recipe: this.selectedRecipe },
       });
     },
   },
