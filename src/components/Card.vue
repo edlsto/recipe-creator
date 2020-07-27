@@ -42,9 +42,9 @@ export default {
 }
 .card-img {
   width: 100%;
-  border-radius: 1em;
   height: 70%;
   object-fit: cover;
+  border-radius: 1em;
 }
 
 .card-title {
