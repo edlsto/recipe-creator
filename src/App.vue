@@ -2,11 +2,23 @@
   <div id="app">
     <Nav @search-input="searchInputHandler" />
     <main>
-      <router-view
-        :recipes="filteredRecipes"
-        v-on:add="handleNewList"
-        @delete-card="deleteCard"
-      />
+      <div v-if="filteredRecipes.length > 0">
+        <router-view
+          :recipes="filteredRecipes"
+          v-on:add="handleNewList"
+          @delete-card="deleteCard"
+        />
+      </div>
+      <div v-else-if="filteredRecipes.length === 0 && searchInput === ''">
+        <h2 class="no-recipes">
+          You have no recipes
+        </h2>
+      </div>
+      <div v-else class="no-recipes">
+        <h2>
+          No search results
+        </h2>
+      </div>
     </main>
   </div>
 </template>
