@@ -23,13 +23,13 @@ The user can also search for recipes, sort recipes, edit recipes and delete reci
 
 From the home screen, the user can view all recipes. The user can search for recipes, as well as sort them.
 
-![Add recipe](https://user-images.githubusercontent.com/4350550/88573379-de365680-cffd-11ea-9a76-26a56c8cd840.png)
-
-The user can click on "add recipe" to input a new recipe, including a title, ingredients, steps, image and times.
-
 ![View recipe](https://user-images.githubusercontent.com/4350550/88573376-dd9dc000-cffd-11ea-8dbe-de1911a40c4b.png)
 
 The recipe page shows all of the details for the recipe, as well as links to edit or delete the recipe.
+
+![Add recipe](https://user-images.githubusercontent.com/4350550/88573379-de365680-cffd-11ea-9a76-26a56c8cd840.png)
+
+The user can click on "add recipe" to input a new recipe, including a title, ingredients, steps, image and times.
 
 ![Edit recipe](https://user-images.githubusercontent.com/4350550/88573372-dc6c9300-cffd-11ea-9ced-eb0678dc12c6.png)
 
