@@ -23,6 +23,7 @@ const routes = [
     component: () => import("../views/Add.vue"),
     props: true,
   },
+  { path: "*", component: Home },
 ];
 
 const router = new VueRouter({
