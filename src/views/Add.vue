@@ -1,6 +1,7 @@
 <template>
   <div class="add">
-    <h1 class="recipe-add-title">Add new recipe</h1>
+    <h1 class="recipe-add-title" v-if="$route.params">Edit recipe</h1>
+    <h1 class="recipe-add-title" v-else>Add new recipe</h1>
 
     <div class="two-col">
       <div class="add-text">
@@ -12,7 +13,6 @@
             type="text"
             id="title"
             placeholder="Add name"
-            v-on:keyup.enter="onSubmitTitle"
           />
         </div>
 
@@ -25,6 +25,8 @@
             <li
               v-for="(ingredient, index) in newRecipe.ingredients"
               :key="index"
+              contenteditable="true"
+              v-on:blur="editIngredient(index, $event)"
             >
               {{ ingredient }}
             </li>
@@ -95,7 +97,7 @@
         <div class="times">
           <div class="times-container">
             <div class="times-item">
-              <label for="prep-time|">Prep time</label>
+              <label for="prep-time">Prep time</label>
               <input
                 v-model="newRecipe.prepTime"
                 type="number"
@@ -190,6 +192,12 @@ export default {
       );
     },
   },
+  created: function() {
+    if (this.$route.params.recipe) {
+      console.log(this.$route.params.recipe);
+      this.newRecipe = this.$route.params.recipe;
+    }
+  },
 
   methods: {
     onSubmitIngredient: function() {
@@ -200,15 +208,7 @@ export default {
       this.newRecipe.steps.push(this.newStep);
       this.newStep = "";
     },
-    onSubmitTitle: function() {
-      console.log("here");
-      this.newRecipe.title = this.newTitle;
-      this.newTitle = "";
-    },
-    onEdit: function() {
-      this.newTitle = this.newRecipe.title;
-      this.newRecipe.title = "";
-    },
+
     submitList: function() {
       if (this.validated) {
         this.$emit("add", this.newRecipe);
@@ -234,6 +234,9 @@ export default {
     },
     removeImage: function(item) {
       item.image = false;
+    },
+    editIngredient: function(index, event) {
+      this.newRecipe.ingredients[index] = event.target.innerHTML;
     },
   },
 };
@@ -429,6 +432,10 @@ input[type="number"] {
 
 .ingredients-list li {
   margin-bottom: 1em;
+}
+
+[contenteditable]:focus {
+  background: white;
 }
 
 @media (max-width: 800px) {
