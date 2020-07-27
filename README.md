@@ -15,6 +15,7 @@ The user can also search for recipes, sort recipes, edit recipes and delete reci
 - `cd` into the directory
 - Run `npm install`
 - Run `npm run serve`
+- Go to `http://localhost:8080/` in your browser
 
 ## Screenshots
 
