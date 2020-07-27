@@ -318,52 +318,60 @@ export default {
 .recipe-add-title {
   margin: 1em auto;
 }
+
 .recipe-add-name {
   max-width: 100%;
 }
+
 .add .submit {
   align-self: center;
+  border-radius: 0;
+  outline: none;
   font-size: 1.2em;
   background: rgb(49, 110, 49);
-  outline: none;
   cursor: pointer;
-  border-radius: 0;
 }
+
 .add {
   display: flex;
   flex-direction: column;
 }
+
 .stack {
   flex-direction: column;
 }
+
 .two-col {
   display: flex;
   justify-content: space-between;
 }
+
 .img-preview {
-  width: 100%;
   display: block;
+  width: 100%;
 }
+
 .add-item {
-  margin-bottom: 2em;
   display: flex;
   flex-direction: column;
+  margin-bottom: 2em;
 }
 
 .add-item-input {
   height: 2em;
   flex: 1 0 auto;
-  font-size: 1em;
   outline: none;
   border-radius: 0;
   border: 1px solid gray;
   padding: 0.5em;
+  font-size: 1em;
 }
 
 .add-item-title {
   flex-direction: row;
   justify-content: space-between;
 }
+
 .form-row {
   display: flex;
   justify-content: space-between;
@@ -372,24 +380,23 @@ export default {
 }
 
 .add-item-button {
-  margin-left: 1em;
   align-self: center;
+  margin-left: 1em;
 }
 
 .add-text {
+  width: 20em;
   display: flex;
   flex-direction: column;
-  width: 20em;
   flex: 0 0 47%;
 }
 
 .input-btn-container {
   flex: 1 0 auto;
   display: flex;
-  margin-top: 1em;
   align-items: center;
-  /* margin-bottom: 2em; */
   flex-wrap: wrap;
+  margin-top: 1em;
 }
 
 .add-image {
@@ -399,18 +406,18 @@ export default {
 textarea {
   height: 100px;
   flex: 1 0 auto;
-  font-family: "Open Sans", sans-serif;
-  font-size: 14px;
   outline: none;
   padding: 0.5em;
+  font-family: "Open Sans", sans-serif;
+  font-size: 14px;
 }
 
 .ingredients-list {
-  background: rgb(233, 249, 255);
   display: flex;
-  padding: 2em;
-  list-style-position: inside;
   flex-direction: column;
+  padding: 2em;
+  background: rgb(233, 249, 255);
+  list-style-position: inside;
 }
 
 .ingredients-list li {
@@ -447,10 +454,10 @@ textarea {
 }
 
 .times-item {
-  flex: 0 0 30%;
   display: flex;
   flex-direction: column;
   align-items: center;
+  flex: 0 0 30%;
 }
 
 .times-input {
@@ -469,9 +476,8 @@ textarea {
 
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
-  /* display: none; <- Crashes Chrome on hover */
   -webkit-appearance: none;
-  margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+  margin: 0;
 }
 
 input[type="number"] {
@@ -479,19 +485,19 @@ input[type="number"] {
 }
 
 .validation-failed {
-  color: red;
   display: flex;
   justify-content: center;
   margin-bottom: 1em;
+  color: red;
 }
 
 .add button {
   border: none;
-  color: white;
   padding: 0.5em;
   border-radius: 0.4em;
   background: gray;
   cursor: pointer;
+  color: white;
 }
 
 .edit-title-btn {
@@ -503,16 +509,16 @@ input[type="number"] {
 }
 
 .delete-btn {
-  display: block;
   height: 1em;
+  display: block;
   cursor: pointer;
 }
 
 .ingredient-container {
-  margin-bottom: 1em;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  margin-bottom: 1em;
 }
 
 .move-delete-button-row {
@@ -534,6 +540,7 @@ input[type="number"] {
   .two-col {
     flex-direction: column;
   }
+
   .add-text {
     width: auto;
   }
