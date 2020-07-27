@@ -144,6 +144,8 @@ body {
   font-family: "Open Sans", sans-serif;
   font-size: 18px;
   line-height: 1.4;
+  height: 100%;
+  width: 100%;
 }
 
 main {
