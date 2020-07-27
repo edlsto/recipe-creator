@@ -6,6 +6,7 @@
         <router-view
           :recipes="filteredRecipes"
           v-on:add="handleNewList"
+          v-on:filter="handleFilter"
           @delete-card="deleteCard"
         />
       </div>
@@ -48,6 +49,9 @@ export default {
     deleteCard: function(id) {
       this.recipes = this.recipes.filter((recipe) => recipe.id !== id);
     },
+    handleFilter: function(selected) {
+      this.filter = selected;
+    },
   },
   computed: {
     filteredRecipes() {
@@ -56,12 +60,32 @@ export default {
           .toLowerCase()
           .includes(this.searchInput.toLowerCase());
       });
+      if (this.filter === "Name-Asc") {
+        filteredList = filteredList.sort((a, b) =>
+          a.title < b.title ? -1 : a.title > b.title ? 1 : 0
+        );
+      }
+      if (this.filter === "Name-Dsc") {
+        filteredList = filteredList.sort((a, b) =>
+          a.title > b.title ? -1 : a.title < b.title ? 1 : 0
+        );
+      }
+      if (this.filter === "Time-Asc") {
+        filteredList = filteredList.sort((a, b) => {
+          return a.cookTime + a.prepTime < b.cookTime + b.prepTime
+            ? -1
+            : a.cookTime + a.prepTime > b.cookTime + b.prepTime
+            ? 1
+            : 0;
+        });
+      }
       return filteredList;
     },
   },
   data() {
     return {
       searchInput: "",
+      filter: "",
       recipes: [
         {
           id: 1,
