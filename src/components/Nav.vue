@@ -129,13 +129,13 @@ a {
     margin: 0 auto 4em;
   }
   .nav-link.router-link-exact-active {
-    border-bottom: none;
-    margin-bottom: none;
+    border-bottom: 0;
+    margin-bottom: 0;
   }
 
   .nav-link:hover {
-    border-bottom: none;
-    margin-bottom: none;
+    border-bottom: 0;
+    margin-bottom: 0;
   }
 }
 </style>
