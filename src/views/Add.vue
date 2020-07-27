@@ -143,6 +143,8 @@
                 class="add-item-input times-input"
                 id="prep-time"
                 placeholder="0"
+                onfocus="this.placeholder = ''"
+                onblur="this.placeholder = '0'"
               />
               <div class="details-unit">minutes</div>
             </div>
@@ -154,6 +156,8 @@
                 type="number"
                 id="cook-time"
                 placeholder="0"
+                onfocus="this.placeholder = ''"
+                onblur="this.placeholder = '0'"
               />
               <div class="details-unit">minutes</div>
             </div>
@@ -165,6 +169,8 @@
                 class="add-item-input times-input"
                 id="serves"
                 placeholder="0"
+                onfocus="this.placeholder = ''"
+                onblur="this.placeholder = '0'"
               />
               <div class="details-unit">people</div>
             </div>
