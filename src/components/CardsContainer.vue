@@ -35,14 +35,6 @@ export default {
   row-gap: 3em;
 }
 
-.no-recipes {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 10em;
-  font-weight: 700;
-}
-
 .select-filter {
   padding: 0.3em;
   border-radius: 0;
