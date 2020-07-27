@@ -1,6 +1,5 @@
 <template>
   <div class="select-container">
-    <label for="filter-select" class="filter-label">Filter</label>
     <select
       name="filter"
       id="filter-select"
