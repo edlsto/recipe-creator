@@ -23,7 +23,7 @@ The user can also search for recipes, sort recipes, edit recipes and delete reci
 
 From the home screen, the user can view all recipes. The user can search for recipes, as well as sort them.
 
-![View recipe](https://user-images.githubusercontent.com/4350550/88573376-dd9dc000-cffd-11ea-8dbe-de1911a40c4b.png)
+![View recipe](https://user-images.githubusercontent.com/4350550/88586829-370fea00-d012-11ea-8368-a88ec3c77e04.png)
 
 The recipe page shows all of the details for the recipe, as well as links to edit or delete the recipe.
 
@@ -37,4 +37,4 @@ The user can edit a recipe, including the title, ingredients, steps, step order,
 
 ### Mobile views
 
-![Mobile view - iPhone 6_7_8](https://user-images.githubusercontent.com/4350550/88584637-2f027b00-d00f-11ea-9020-1c7eba33f4f3.png)
+![Mobile view - iPhone 6_7_8](https://user-images.githubusercontent.com/4350550/88587154-bb626d00-d012-11ea-8bc6-4982d7e1975a.png)
