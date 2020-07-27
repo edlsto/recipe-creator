@@ -1,6 +1,8 @@
 <template>
   <div class="add">
-    <h1 class="recipe-add-title" v-if="$route.params.recipe">Edit recipe</h1>
+    <h1 class="recipe-add-title" v-if="id">
+      Edit recipe
+    </h1>
     <h1 class="recipe-add-title" v-else>Add new recipe</h1>
 
     <div class="two-col">
@@ -217,6 +219,7 @@ export default {
       validationFailed: false,
     };
   },
+  props: ["id", "recipes"],
   computed: {
     validated: function() {
       return (
@@ -230,9 +233,10 @@ export default {
     },
   },
   created: function() {
-    if (this.$route.params.recipe) {
-      console.log(this.$route.params.recipe);
-      this.newRecipe = this.$route.params.recipe;
+    if (this.id) {
+      this.newRecipe = this.recipes.find(
+        (recipe) => parseInt(this.id) === recipe.id
+      );
     }
   },
 
@@ -384,10 +388,6 @@ export default {
 
 .add-image {
   flex: 0 0 47%;
-}
-
-label {
-  /* margin-right: 1em; */
 }
 
 textarea {
