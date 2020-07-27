@@ -12,6 +12,7 @@
           </h4>
           <h4 class="recipe-subtitle">Serves: {{ selectedRecipe.serves }}</h4>
         </div>
+        <img src="../assets/groceries.png" alt="" class="icon" />
         <h4 class="recipe-subtitle">Ingredients</h4>
         <ul class="recipe-list">
           <li
@@ -31,6 +32,8 @@
           alt=""
         />
         <img v-else class="recipe-img" src="../assets/placeholder.png" />
+        <img src="../assets/steps.png" alt="" class="icon" />
+
         <h4 class="recipe-subtitle">Steps</h4>
         <ol class="recipe-list">
           <li
@@ -93,10 +96,12 @@ export default {
 
 .recipe-subtitle {
   margin: 1em 0;
+  text-align: center;
 }
 
 .details .recipe-subtitle {
   font-weight: 400;
+  text-align: left;
 }
 
 .details .recipe-subtitle:last-of-type {
@@ -160,6 +165,12 @@ export default {
 .edit-delete {
   display: flex;
   justify-content: center;
+}
+
+.icon {
+  height: 2em;
+  display: block;
+  margin: 2em auto 0;
 }
 
 @media (max-width: 800px) {
