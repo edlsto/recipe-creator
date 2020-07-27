@@ -35,6 +35,7 @@ export default {
 <style>
 .card {
   display: flex;
+  height: 12em;
 }
 .card:hover {
   transform: scale(1.01);
