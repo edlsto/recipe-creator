@@ -72,11 +72,9 @@ export default {
       }
       if (this.filter === "Time-Asc") {
         filteredList = filteredList.sort((a, b) => {
-          return a.cookTime + a.prepTime < b.cookTime + b.prepTime
-            ? -1
-            : a.cookTime + a.prepTime > b.cookTime + b.prepTime
-            ? 1
-            : 0;
+          let aTime = parseInt(a.cookTime) + parseInt(a.prepTime);
+          let bTime = parseInt(b.cookTime) + parseInt(b.prepTime);
+          return aTime < bTime ? -1 : aTime > bTime ? 1 : 0;
         });
       }
       return filteredList;
