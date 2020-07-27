@@ -1,6 +1,6 @@
 <template>
   <div id="home">
-    <CardsContainer :recipes="recipes" />
+    <CardsContainer :recipes="recipes" v-on="$listeners" />
   </div>
 </template>
 
