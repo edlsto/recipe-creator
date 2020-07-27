@@ -33,3 +33,7 @@ The recipe page shows all of the details for the recipe, as well as links to edi
 ![Edit recipe](https://user-images.githubusercontent.com/4350550/88573372-dc6c9300-cffd-11ea-9ced-eb0678dc12c6.png)
 
 The user can edit a recipe, including the title, ingredients, steps, step order, cooking times, serving size and image.
+
+### Mobile views
+
+![Mobile view - iPhone 6_7_8](https://user-images.githubusercontent.com/4350550/88584637-2f027b00-d00f-11ea-9020-1c7eba33f4f3.png)
