@@ -1,12 +1,13 @@
 <template>
   <div id="app">
-    <Nav @search-input="searchInputHandler" />
+    <Nav />
     <main>
       <router-view
         :recipes="filteredRecipes"
         v-on:add="handleNewList"
         v-on:filter="handleFilter"
         @delete-card="deleteCard"
+        @search-input="searchInputHandler"
       />
     </main>
   </div>
@@ -51,13 +52,21 @@ export default {
       });
       if (this.filter === "Name-Asc") {
         filteredList = filteredList.sort((a, b) =>
-          a.title < b.title ? -1 : a.title > b.title ? 1 : 0
+          a.title.toLowerCase() < b.title.toLowerCase()
+            ? -1
+            : a.title.toLowerCase() > b.title.toLowerCase()
+            ? 1
+            : 0
         );
       }
       if (this.filter === "Name-Dsc") {
-        filteredList = filteredList.sort((a, b) =>
-          a.title > b.title ? -1 : a.title < b.title ? 1 : 0
-        );
+        filteredList = filteredList.sort((a, b) => {
+          return a.title.toLowerCase() > b.title.toLowerCase()
+            ? -1
+            : a.title.toLowerCase() < b.title.toLowerCase()
+            ? 1
+            : 0;
+        });
       }
       if (this.filter === "Time-Asc") {
         filteredList = filteredList.sort((a, b) => {
