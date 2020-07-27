@@ -1,6 +1,6 @@
 <template>
   <div class="add">
-    <h1 class="recipe-add-title" v-if="$route.params">Edit recipe</h1>
+    <h1 class="recipe-add-title" v-if="$route.params.recipe">Edit recipe</h1>
     <h1 class="recipe-add-title" v-else>Add new recipe</h1>
 
     <div class="two-col">
@@ -22,14 +22,18 @@
             <p class="no-ingredients" v-if="!newRecipe.ingredients.length">
               No ingredients added
             </p>
-            <li
+            <div
               v-for="(ingredient, index) in newRecipe.ingredients"
               :key="index"
-              contenteditable="true"
-              v-on:blur="editIngredient(index, $event)"
             >
-              {{ ingredient }}
-            </li>
+              <li
+                contenteditable="true"
+                v-on:blur="editIngredient(index, $event)"
+              >
+                {{ ingredient }}
+              </li>
+              <button v-on:click="deleteItem(index)">Delete</button>
+            </div>
             <div class="input-btn-container">
               <input
                 placeholder="Add ingredient"
@@ -55,9 +59,22 @@
             <p class="no-ingredients" v-if="!newRecipe.steps.length">
               No steps added
             </p>
-            <li v-for="(step, index) in newRecipe.steps" :key="index">
-              {{ step }}
-            </li>
+            <div v-for="(step, index) in newRecipe.steps" :key="index">
+              <li contenteditable="true" v-on:blur="editStep(index, $event)">
+                {{ step }}
+              </li>
+              <button v-on:click="deleteStep(index)">Delete</button>
+              <button v-if="index > 0" v-on:click="moveUp(index, $event)">
+                Move up
+              </button>
+              <button
+                v-if="index < newRecipe.steps.length - 1"
+                v-on:click="moveDown(index, $event)"
+              >
+                Move down
+              </button>
+            </div>
+
             <textarea
               placeholder="Add step"
               v-model="newStep"
@@ -237,6 +254,32 @@ export default {
     },
     editIngredient: function(index, event) {
       this.newRecipe.ingredients[index] = event.target.innerHTML;
+    },
+    editStep: function(index, event) {
+      this.newRecipe.steps[index] = event.target.innerHTML;
+    },
+    deleteItem: function(index) {
+      this.newRecipe.ingredients.splice(index, 1);
+    },
+    deleteStep: function(index) {
+      this.newRecipe.steps.splice(index, 1);
+    },
+    moveUp: function(index, event) {
+      console.log(event.target.parentElement.firstChild.innerHTML);
+      this.newRecipe.steps.splice(index, 1);
+      this.newRecipe.steps.splice(
+        index - 1,
+        0,
+        event.target.parentElement.firstChild.innerHTML
+      );
+    },
+    moveDown: function(index, event) {
+      this.newRecipe.steps.splice(index, 1);
+      this.newRecipe.steps.splice(
+        index + 1,
+        0,
+        event.target.parentElement.firstChild.innerHTML
+      );
     },
   },
 };
