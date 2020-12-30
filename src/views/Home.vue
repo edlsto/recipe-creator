@@ -5,7 +5,7 @@
         type="text"
         class="search"
         v-model="search"
-        v-on:keyup="setSearch"
+        @keyup="setSearch"
         placeholder="Search by recipe title"
       />
       <Select v-on="$listeners" />
@@ -26,16 +26,28 @@ export default {
     CardsContainer,
   },
   name: "Home",
-  props: ["recipes"],
   methods: {
     setSearch: function() {
       this.$emit("search-input", this.search);
+    },
+    deleteCard: function(id) {
+      this.recipes = this.recipes.filter((recipe) => recipe.id !== id);
+    },
+    handleFilter: function(selected) {
+      this.filter = selected;
+    },
+    searchInputHandler: function(input) {
+      this.searchInput = input;
     },
   },
   data() {
     return {
       search: "",
+      recipes: [],
     };
+  },
+  created: function() {
+    this.recipes = this.$store.state.recipes;
   },
   destroyed() {
     this.$emit("search-input", "");
@@ -43,7 +55,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .no-recipes {
   display: flex;
   justify-content: center;

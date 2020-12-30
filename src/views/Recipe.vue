@@ -55,7 +55,12 @@
 
 <script>
 export default {
-  props: ["recipes", "id"],
+  props: ["id"],
+  data() {
+    return {
+      recipes: [],
+    };
+  },
   computed: {
     selectedRecipe: function() {
       return this.recipes.find((recipe) => recipe.id === parseInt(this.id));
@@ -72,10 +77,17 @@ export default {
       });
     },
   },
+  created: function() {
+    this.recipes = this.$store.state.recipes;
+  },
 };
 </script>
 
-<style>
+<style scoped>
+.about {
+  margin-bottom: 2rem;
+}
+
 .recipe-img {
   width: 100%;
 }
@@ -87,9 +99,11 @@ export default {
 .text {
   flex: 0 0 40%;
 }
+
 .image {
   flex: 0 0 55%;
 }
+
 .recipe-title {
   margin-bottom: 0.5em;
 }

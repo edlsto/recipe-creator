@@ -255,10 +255,18 @@ export default {
       this.newRecipe.steps.push(this.newStep);
       this.newStep = "";
     },
-
+    handleNewList: function(recipe) {
+      const index = this.recipes.findIndex((rec) => rec.id === recipe.id);
+      if (index > -1) {
+        this.recipes[index] = recipe;
+      } else {
+        this.$store.commit("addRecipe", recipe);
+        // this.recipes.push(recipe);
+      }
+    },
     submitList: function() {
       if (this.validated) {
-        this.$emit("add", this.newRecipe);
+        this.handleNewList;
         this.$router.push({ name: "Home" });
       } else {
         this.validationFailed = true;

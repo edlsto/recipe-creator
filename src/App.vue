@@ -2,13 +2,7 @@
   <div id="app">
     <Nav />
     <main>
-      <router-view
-        :recipes="filteredRecipes"
-        v-on:add="handleNewList"
-        v-on:filter="handleFilter"
-        @delete-card="deleteCard"
-        @search-input="searchInputHandler"
-      />
+      <router-view />
     </main>
   </div>
 </template>
@@ -20,74 +14,55 @@ export default {
   components: {
     Nav,
   },
-  methods: {
-    handleNewList: function(recipe) {
-      const index = this.recipes.findIndex((rec) => rec.id === recipe.id);
-      if (index > -1) {
-        this.recipes[index] = recipe;
-      } else {
-        this.recipes.push(recipe);
-      }
-    },
-    searchInputHandler: function(input) {
-      this.searchInput = input;
-    },
-    deleteCard: function(id) {
-      this.recipes = this.recipes.filter((recipe) => recipe.id !== id);
-    },
-    handleFilter: function(selected) {
-      this.filter = selected;
-    },
-  },
-  computed: {
-    filteredRecipes() {
-      let filteredList = this.recipes.filter((recipe) => {
-        return recipe.title
-          .toLowerCase()
-          .includes(this.searchInput.toLowerCase());
-      });
-      if (this.filter === "Name-Asc") {
-        filteredList = filteredList.sort((a, b) =>
-          a.title.toLowerCase() < b.title.toLowerCase()
-            ? -1
-            : a.title.toLowerCase() > b.title.toLowerCase()
-            ? 1
-            : 0
-        );
-      }
-      if (this.filter === "Name-Dsc") {
-        filteredList = filteredList.sort((a, b) => {
-          return a.title.toLowerCase() > b.title.toLowerCase()
-            ? -1
-            : a.title.toLowerCase() < b.title.toLowerCase()
-            ? 1
-            : 0;
-        });
-      }
-      if (this.filter === "Time-Asc") {
-        filteredList = filteredList.sort((a, b) => {
-          let aTime = parseInt(a.cookTime) + parseInt(a.prepTime);
-          let bTime = parseInt(b.cookTime) + parseInt(b.prepTime);
-          return aTime < bTime ? -1 : aTime > bTime ? 1 : 0;
-        });
-      }
-      if (this.filter === "Time-Dsc") {
-        filteredList = filteredList.sort((a, b) => {
-          let aTime = parseInt(a.cookTime) + parseInt(a.prepTime);
-          let bTime = parseInt(b.cookTime) + parseInt(b.prepTime);
-          return aTime > bTime ? -1 : aTime < bTime ? 1 : 0;
-        });
-      }
-      return filteredList;
-    },
-  },
   data() {
     return {
       searchInput: "",
       filter: "",
-      recipes: [],
     };
   },
+
+  // computed: {
+  //   filteredRecipes() {
+  //     let filteredList = this.recipes.filter((recipe) => {
+  //       return recipe.title
+  //         .toLowerCase()
+  //         .includes(this.searchInput.toLowerCase());
+  //     });
+  //     if (this.filter === "Name-Asc") {
+  //       filteredList = filteredList.sort((a, b) =>
+  //         a.title.toLowerCase() < b.title.toLowerCase()
+  //           ? -1
+  //           : a.title.toLowerCase() > b.title.toLowerCase()
+  //           ? 1
+  //           : 0
+  //       );
+  //     }
+  //     if (this.filter === "Name-Dsc") {
+  //       filteredList = filteredList.sort((a, b) => {
+  //         return a.title.toLowerCase() > b.title.toLowerCase()
+  //           ? -1
+  //           : a.title.toLowerCase() < b.title.toLowerCase()
+  //           ? 1
+  //           : 0;
+  //       });
+  //     }
+  //     if (this.filter === "Time-Asc") {
+  //       filteredList = filteredList.sort((a, b) => {
+  //         let aTime = parseInt(a.cookTime) + parseInt(a.prepTime);
+  //         let bTime = parseInt(b.cookTime) + parseInt(b.prepTime);
+  //         return aTime < bTime ? -1 : aTime > bTime ? 1 : 0;
+  //       });
+  //     }
+  //     if (this.filter === "Time-Dsc") {
+  //       filteredList = filteredList.sort((a, b) => {
+  //         let aTime = parseInt(a.cookTime) + parseInt(a.prepTime);
+  //         let bTime = parseInt(b.cookTime) + parseInt(b.prepTime);
+  //         return aTime > bTime ? -1 : aTime < bTime ? 1 : 0;
+  //       });
+  //     }
+  //     return filteredList;
+  //   },
+  // },
 };
 </script>
 
