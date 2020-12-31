@@ -66,16 +66,8 @@ export default {
   },
   async created() {
     const response = await axios(`http://localhost:3001/recipes/${this._id}`);
-    console.log(response);
     this.selectedRecipe = response.data;
   },
-  // computed: {
-  //   selectedRecipe: function() {
-  //     return this.$store.state.recipes.find(
-  //       (recipe) => recipe._id === this._id
-  //     );
-  //   },
-  // },
   methods: {
     deleteRecipe: function() {
       this.$emit("delete-card", this.selectedRecipe.id);
