@@ -1,5 +1,6 @@
 import Vue from "vue";
 import Vuex from "vuex";
+import axios from "axios";
 
 Vue.use(Vuex);
 
@@ -8,16 +9,14 @@ const store = new Vuex.Store({
     recipes: [],
   },
   mutations: {
-    addRecipe(state, recipe) {
-      state.recipes.push(recipe);
-    },
     setRecipes(state, initialState) {
       state.recipes = initialState;
     },
   },
   actions: {
-    init({ commit }, data) {
-      commit("setRecipes", data);
+    async getRecipes({ commit }) {
+      const response = await axios("http://localhost:3001/recipes");
+      commit("setRecipes", response.data);
     },
   },
 });

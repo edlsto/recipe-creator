@@ -206,6 +206,7 @@
 
 <script>
 // import Placeholder from "../assets/placeholder.png";
+import axios from "axios";
 
 export default {
   data() {
@@ -225,7 +226,6 @@ export default {
       validationFailed: false,
     };
   },
-  props: ["id", "recipes"],
   computed: {
     validated: function() {
       return (
@@ -238,6 +238,7 @@ export default {
       );
     },
   },
+  props: ["id"],
   created: function() {
     if (this.id) {
       this.newRecipe = this.recipes.find(
@@ -256,17 +257,24 @@ export default {
       this.newStep = "";
     },
     handleNewList: function(recipe) {
-      const index = this.recipes.findIndex((rec) => rec.id === recipe.id);
+      const index = this.$store.state.recipes.findIndex(
+        (rec) => rec.id === this.newRecipe.id
+      );
       if (index > -1) {
         this.recipes[index] = recipe;
       } else {
-        this.$store.commit("addRecipe", recipe);
+        // this.$store.commit("addRecipe", recipe);
         // this.recipes.push(recipe);
+        try {
+          axios.post("http://localhost:3001/recipes", this.newRecipe);
+        } catch (error) {
+          console.log(error);
+        }
       }
     },
     submitList: function() {
       if (this.validated) {
-        this.handleNewList;
+        this.handleNewList(this.recipe);
         this.$router.push({ name: "Home" });
       } else {
         this.validationFailed = true;
