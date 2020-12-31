@@ -1,6 +1,6 @@
 <template>
   <div class="card">
-    <router-link :to="{ name: 'recipe', params: { id: id } }">
+    <router-link :to="{ name: 'recipe', params: { _id } }">
       <img v-if="image" class="card-img" :src="image" alt="" />
       <img v-else class="card-img" src="../assets/placeholder.png" alt="" />
 
@@ -21,7 +21,7 @@
 export default {
   name: "Card",
   props: [
-    "id",
+    "_id",
     "title",
     "ingredients",
     "image",
@@ -32,7 +32,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .card {
   display: flex;
   height: 12em;

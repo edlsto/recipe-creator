@@ -322,7 +322,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .recipe-add-title {
   margin: 1em auto;
 }

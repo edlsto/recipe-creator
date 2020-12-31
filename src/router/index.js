@@ -16,9 +16,9 @@ const routes = [
     name: "Add",
     component: () => import("../views/Add.vue"),
   },
-  { path: "/recipe/:id", name: "recipe", component: Recipe, props: true },
+  { path: "/recipe/:_id", name: "recipe", component: Recipe, props: true },
   {
-    path: "/recipe/:id/edit",
+    path: "/recipe/:_id/edit",
     name: "Edit",
     component: () => import("../views/Add.vue"),
     props: true,

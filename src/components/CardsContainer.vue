@@ -1,16 +1,6 @@
 <template>
   <div class="cards-container">
-    <Card
-      v-for="recipe in recipes"
-      v-bind:key="recipe._id"
-      v-bind:title="recipe.title"
-      v-bind:ingredients="recipe.ingredients"
-      v-bind:id="recipe._id"
-      v-bind:serves="recipe.serves"
-      v-bind:prepTime="recipe.prepTime"
-      v-bind:cookTime="recipe.cookTime"
-      v-bind:image="recipe.image"
-    />
+    <Card v-for="recipe in recipes" v-bind:key="recipe._id" v-bind="recipe" />
   </div>
 </template>
 
@@ -25,7 +15,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .cards-container {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));

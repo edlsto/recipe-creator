@@ -55,7 +55,7 @@
 
 <script>
 export default {
-  props: ["id"],
+  props: ["_id"],
   data() {
     return {
       recipes: [],
@@ -64,7 +64,9 @@ export default {
 
   computed: {
     selectedRecipe: function() {
-      return this.$store.state.recipes.find((recipe) => recipe._id === this.id);
+      return this.$store.state.recipes.find(
+        (recipe) => recipe._id === this._id
+      );
     },
   },
   methods: {
