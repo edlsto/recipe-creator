@@ -26,9 +26,9 @@
       </div>
       <div class="image">
         <img
-          v-if="selectedRecipe.image"
+          v-if="selectedRecipe.pageImage"
           class="recipe-img"
-          :src="selectedRecipe.image"
+          :src="`http://localhost:3001/recipe/${_id}/pageimage`"
           alt=""
         />
         <img v-else class="recipe-img" src="../assets/placeholder.png" />
@@ -54,21 +54,28 @@
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
   props: ["_id"],
   data() {
     return {
       recipes: [],
+      selectedRecipe: null,
     };
   },
-
-  computed: {
-    selectedRecipe: function() {
-      return this.$store.state.recipes.find(
-        (recipe) => recipe._id === this._id
-      );
-    },
+  async created() {
+    const response = await axios(`http://localhost:3001/recipes/${this._id}`);
+    console.log(response);
+    this.selectedRecipe = response.data;
   },
+  // computed: {
+  //   selectedRecipe: function() {
+  //     return this.$store.state.recipes.find(
+  //       (recipe) => recipe._id === this._id
+  //     );
+  //   },
+  // },
   methods: {
     deleteRecipe: function() {
       this.$emit("delete-card", this.selectedRecipe.id);

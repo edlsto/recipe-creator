@@ -1,7 +1,12 @@
 <template>
   <div class="card">
     <router-link :to="{ name: 'recipe', params: { _id } }">
-      <img v-if="image" class="card-img" :src="image" alt="" />
+      <img
+        v-if="cardImage"
+        class="card-img"
+        :src="`http://localhost:3001/recipe/${_id}/cardimage`"
+        alt=""
+      />
       <img v-else class="card-img" src="../assets/placeholder.png" alt="" />
 
       <h4 class="card-title">
@@ -24,7 +29,7 @@ export default {
     "_id",
     "title",
     "ingredients",
-    "image",
+    "cardImage",
     "serves",
     "prepTime",
     "cookTime",
