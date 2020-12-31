@@ -1,6 +1,6 @@
 <template>
   <div class="about">
-    <div class="recipe-main">
+    <div class="recipe-main" v-if="selectedRecipe">
       <div class="text">
         <h1 class="recipe-title">{{ selectedRecipe.title }}</h1>
         <div class="details">
@@ -61,9 +61,10 @@ export default {
       recipes: [],
     };
   },
+
   computed: {
     selectedRecipe: function() {
-      return this.recipes.find((recipe) => recipe.id === parseInt(this.id));
+      return this.$store.state.recipes.find((recipe) => recipe._id === this.id);
     },
   },
   methods: {
@@ -76,9 +77,6 @@ export default {
         name: "Edit",
       });
     },
-  },
-  created: function() {
-    this.recipes = this.$store.state.recipes;
   },
 };
 </script>

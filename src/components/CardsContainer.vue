@@ -2,10 +2,10 @@
   <div class="cards-container">
     <Card
       v-for="recipe in recipes"
-      v-bind:key="recipe.id"
+      v-bind:key="recipe._id"
       v-bind:title="recipe.title"
       v-bind:ingredients="recipe.ingredients"
-      v-bind:id="recipe.id"
+      v-bind:id="recipe._id"
       v-bind:serves="recipe.serves"
       v-bind:prepTime="recipe.prepTime"
       v-bind:cookTime="recipe.cookTime"

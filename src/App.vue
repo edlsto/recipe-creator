@@ -20,6 +20,11 @@ export default {
       filter: "",
     };
   },
+  async created() {
+    const response = await fetch("http://localhost:3001/recipes");
+    const data = await response.json();
+    this.$store.dispatch("init", data);
+  },
 
   // computed: {
   //   filteredRecipes() {

@@ -10,8 +10,11 @@
       />
       <Select v-on="$listeners" />
     </div>
-    <div class="cards-container-wrapper" v-if="recipes.length > 0">
-      <CardsContainer :recipes="recipes" />
+    <div
+      class="cards-container-wrapper"
+      v-if="this.$store.state.recipes.length > 0"
+    >
+      <CardsContainer :recipes="this.$store.state.recipes" />
     </div>
     <div v-else class="no-recipes">No recipes</div>
   </div>
@@ -43,11 +46,7 @@ export default {
   data() {
     return {
       search: "",
-      recipes: [],
     };
-  },
-  created: function() {
-    this.recipes = this.$store.state.recipes;
   },
   destroyed() {
     this.$emit("search-input", "");
