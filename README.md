@@ -8,6 +8,7 @@ The user can also search for recipes, sort recipes, edit recipes and delete reci
 
 - Vue
 - Vue Router
+- Vuex
 
 ## How to install
 
