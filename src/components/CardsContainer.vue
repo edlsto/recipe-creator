@@ -1,6 +1,6 @@
 <template>
   <div class="cards-container">
-    <Card v-for="recipe in recipes" v-bind:key="recipe._id" v-bind="recipe" />
+    <Card v-for="recipe in recipes" :key="recipe._id" v-bind="recipe" />
   </div>
 </template>
 
@@ -11,7 +11,17 @@ export default {
     Card,
   },
   name: "CardsContainer",
-  props: ["recipes"],
+  computed: {
+    recipes() {
+      let sortedRecipes = this.$store.state.recipes;
+      if (this.$store.state.filter === "Name-Dsc") {
+        sortedRecipes = sortedRecipes.sort((a, b) => {
+          return a.title.toLowerCase() < b.title.toLowerCase() ? 1 : -1;
+        });
+      }
+      return sortedRecipes;
+    },
+  },
 };
 </script>
 

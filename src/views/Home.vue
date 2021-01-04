@@ -14,7 +14,7 @@
       class="cards-container-wrapper"
       v-if="this.$store.state.recipes.length > 0"
     >
-      <CardsContainer :recipes="this.$store.state.recipes" />
+      <CardsContainer />
     </div>
     <div v-else class="no-recipes">No recipes</div>
   </div>

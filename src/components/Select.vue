@@ -3,8 +3,8 @@
     <select
       name="filter"
       id="filter-select"
-      v-model="selected"
-      v-on:change="$emit('filter', selected)"
+      :value="selected"
+      v-on:change="updateFilter"
       class="select-filter"
     >
       <option value="">--Sort recipes--</option>
@@ -17,12 +17,18 @@
 </template>
 
 <script>
+import { mapState } from "vuex";
 export default {
   name: "Select",
-  data() {
-    return {
-      selected: "",
-    };
+  computed: {
+    ...mapState({
+      selected: (state) => state.selected,
+    }),
+  },
+  methods: {
+    updateFilter(e) {
+      this.$store.commit("updateFilter", e.target.value);
+    },
   },
 };
 </script>

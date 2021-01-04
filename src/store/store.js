@@ -7,10 +7,14 @@ Vue.use(Vuex);
 const store = new Vuex.Store({
   state: {
     recipes: [],
+    filter: "",
   },
   mutations: {
     setRecipes(state, initialState) {
       state.recipes = initialState;
+    },
+    updateFilter(state, filter) {
+      state.filter = filter;
     },
   },
   actions: {
