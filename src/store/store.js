@@ -8,6 +8,7 @@ const store = new Vuex.Store({
   state: {
     recipes: [],
     filter: "",
+    search: "",
   },
   mutations: {
     setRecipes(state, initialState) {
@@ -15,6 +16,9 @@ const store = new Vuex.Store({
     },
     updateFilter(state, filter) {
       state.filter = filter;
+    },
+    setSearch(state, search) {
+      state.search = search;
     },
   },
   actions: {

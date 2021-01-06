@@ -256,7 +256,7 @@ export default {
       this.newRecipe.steps.push(this.newStep);
       this.newStep = "";
     },
-    handleNewList: function(recipe) {
+    handleNewList: async function(recipe) {
       const index = this.$store.state.recipes.findIndex(
         (rec) => rec.id === this.newRecipe.id
       );
@@ -266,15 +266,16 @@ export default {
         // this.$store.commit("addRecipe", recipe);
         // this.recipes.push(recipe);
         try {
-          axios.post("http://localhost:3001/recipes", this.newRecipe);
+          await axios.post("http://localhost:3001/recipes", this.newRecipe);
         } catch (error) {
           console.log(error);
         }
       }
     },
-    submitList: function() {
+    submitList: async function() {
       if (this.validated) {
         this.handleNewList(this.recipe);
+        this.$store.dispatch("getRecipes");
         this.$router.push({ name: "Home" });
       } else {
         this.validationFailed = true;

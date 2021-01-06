@@ -31,7 +31,7 @@ export default {
   name: "Home",
   methods: {
     setSearch: function() {
-      this.$emit("search-input", this.search);
+      this.$store.commit("setSearch", this.search);
     },
     deleteCard: function(id) {
       this.recipes = this.recipes.filter((recipe) => recipe.id !== id);

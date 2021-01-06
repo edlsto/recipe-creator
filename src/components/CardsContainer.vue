@@ -14,10 +14,34 @@ export default {
   computed: {
     recipes() {
       let sortedRecipes = this.$store.state.recipes;
-      if (this.$store.state.filter === "Name-Dsc") {
-        sortedRecipes = sortedRecipes.sort((a, b) => {
-          return a.title.toLowerCase() < b.title.toLowerCase() ? 1 : -1;
+      if (this.$store.state.search) {
+        const regex = new RegExp(this.$store.state.search.toLowerCase(), "g");
+        sortedRecipes = sortedRecipes.filter((recipe) => {
+          console.log(recipe.title);
+          return recipe.title.toLowerCase().match(regex);
         });
+      }
+      switch (this.$store.state.filter) {
+        case "Name-Dsc":
+          sortedRecipes = sortedRecipes.sort((a, b) => {
+            return a.title.toLowerCase() < b.title.toLowerCase() ? 1 : -1;
+          });
+          break;
+        case "Name-Asc":
+          sortedRecipes = sortedRecipes.sort((a, b) => {
+            return a.title.toLowerCase() > b.title.toLowerCase() ? 1 : -1;
+          });
+          break;
+        case "Time-Dsc":
+          sortedRecipes = sortedRecipes.sort((a, b) => {
+            return b.prepTime + b.cookTime - (a.prepTime + a.cookTime);
+          });
+          break;
+        case "Time-Asc":
+          sortedRecipes = sortedRecipes.sort((a, b) => {
+            return a.prepTime + a.cookTime - (b.prepTime + b.cookTime);
+          });
+          break;
       }
       return sortedRecipes;
     },
