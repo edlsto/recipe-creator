@@ -28,6 +28,9 @@ const store = new Vuex.Store({
       const response = await axios("http://localhost:3001/recipes");
       commit("setRecipes", response.data);
     },
+    async deleteRecipe(_, payload) {
+      await axios.delete(`http://localhost:3001/recipes/${payload.id}`);
+    },
   },
 });
 

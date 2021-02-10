@@ -69,8 +69,9 @@ export default {
     this.selectedRecipe = response.data;
   },
   methods: {
-    deleteRecipe: function() {
-      this.$emit("delete-card", this.selectedRecipe.id);
+    deleteRecipe: async function() {
+      await this.$store.dispatch("deleteRecipe", { id: this._id });
+      await this.$store.dispatch("getRecipes");
       this.$router.push({ name: "Home" });
     },
     editRecipe: function() {
