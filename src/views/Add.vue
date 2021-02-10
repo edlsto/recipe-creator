@@ -1,6 +1,6 @@
 <template>
   <div class="add">
-    <h1 class="recipe-add-title" v-if="id">
+    <h1 class="recipe-add-title" v-if="_id">
       Edit recipe
     </h1>
     <h1 class="recipe-add-title" v-else>Add new recipe</h1>
@@ -219,7 +219,6 @@ export default {
         prepTime: null,
         serves: null,
         image: null,
-        id: Date.now(),
       },
       newIngredient: "",
       newStep: "",
@@ -238,12 +237,11 @@ export default {
       );
     },
   },
-  props: ["id"],
-  created: function() {
-    if (this.id) {
-      this.newRecipe = this.recipes.find(
-        (recipe) => parseInt(this.id) === recipe.id
-      );
+  props: ["_id"],
+  created: async function() {
+    if (this._id) {
+      const response = await axios(`http://localhost:3001/recipes/${this._id}`);
+      this.newRecipe = response.data;
     }
   },
 
@@ -258,10 +256,20 @@ export default {
     },
     handleNewList: async function(recipe) {
       const index = this.$store.state.recipes.findIndex(
-        (rec) => rec.id === this.newRecipe.id
+        (rec) => rec._id === this.newRecipe._id
       );
       if (index > -1) {
-        this.recipes[index] = recipe;
+        await axios.patch(
+          `http://localhost:3001/recipes/${this.newRecipe._id}`,
+          {
+            title: recipe.title,
+            ingredients: recipe.ingredients,
+            steps: recipe.steps,
+            cookTime: recipe.cookTime,
+            prepTime: recipe.prepTime,
+            serves: recipe.serves,
+          }
+        );
       } else {
         // this.$store.commit("addRecipe", recipe);
         // this.recipes.push(recipe);
@@ -274,7 +282,7 @@ export default {
     },
     submitList: async function() {
       if (this.validated) {
-        this.handleNewList(this.recipe);
+        await this.handleNewList(this.newRecipe);
         this.$store.dispatch("getRecipes");
         this.$router.push({ name: "Home" });
       } else {
