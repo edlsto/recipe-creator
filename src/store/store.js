@@ -4,6 +4,8 @@ import axios from "axios";
 
 Vue.use(Vuex);
 
+// add comment to store
+
 const store = new Vuex.Store({
   state: {
     recipes: [],
