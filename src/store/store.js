@@ -25,11 +25,15 @@ const store = new Vuex.Store({
   },
   actions: {
     async getRecipes({ commit }) {
-      const response = await axios("http://localhost:3001/recipes");
+      const response = await axios(
+        "https://recipe-app-edlsto.herokuapp.com/recipes"
+      );
       commit("setRecipes", response.data);
     },
     async deleteRecipe(_, payload) {
-      await axios.delete(`http://localhost:3001/recipes/${payload.id}`);
+      await axios.delete(
+        `https://recipe-app-edlsto.herokuapp.com/recipes/${payload.id}`
+      );
     },
   },
 });

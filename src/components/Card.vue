@@ -4,7 +4,7 @@
       <img
         v-if="cardImage"
         class="card-img"
-        :src="`http://localhost:3001/recipe/${_id}/cardimage`"
+        :src="`https://recipe-app-edlsto.herokuapp.com/recipe/${_id}/cardimage`"
         alt=""
       />
       <img v-else class="card-img" src="../assets/placeholder.png" alt="" />

@@ -28,7 +28,9 @@
         <img
           v-if="selectedRecipe.pageImage"
           class="recipe-img"
-          :src="`http://localhost:3001/recipe/${_id}/pageimage`"
+          :src="
+            `https://recipe-app-edlsto.herokuapp.com/recipe/${_id}/pageimage`
+          "
           alt=""
         />
         <img v-else class="recipe-img" src="../assets/placeholder.png" />
@@ -65,7 +67,9 @@ export default {
     };
   },
   async created() {
-    const response = await axios(`http://localhost:3001/recipes/${this._id}`);
+    const response = await axios(
+      `https://recipe-app-edlsto.herokuapp.com/recipes/${this._id}`
+    );
     this.selectedRecipe = response.data;
   },
   methods: {

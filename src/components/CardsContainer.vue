@@ -17,7 +17,6 @@ export default {
       if (this.$store.state.search) {
         const regex = new RegExp(this.$store.state.search.toLowerCase(), "g");
         sortedRecipes = sortedRecipes.filter((recipe) => {
-          console.log(recipe.title);
           return recipe.title.toLowerCase().match(regex);
         });
       }

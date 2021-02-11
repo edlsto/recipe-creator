@@ -240,7 +240,9 @@ export default {
   props: ["_id"],
   created: async function() {
     if (this._id) {
-      const response = await axios(`http://localhost:3001/recipes/${this._id}`);
+      const response = await axios(
+        `https://recipe-app-edlsto.herokuapp.com/recipes/${this._id}`
+      );
       this.newRecipe = { ...response.data, image: undefined };
     }
   },
@@ -260,7 +262,7 @@ export default {
       );
       if (index > -1) {
         await axios.patch(
-          `http://localhost:3001/recipes/${this.newRecipe._id}`,
+          `https://recipe-app-edlsto.herokuapp.com/recipes/${this.newRecipe._id}`,
           {
             title: recipe.title,
             ingredients: recipe.ingredients,
@@ -275,7 +277,10 @@ export default {
         // this.$store.commit("addRecipe", recipe);
         // this.recipes.push(recipe);
         try {
-          await axios.post("http://localhost:3001/recipes", this.newRecipe);
+          await axios.post(
+            "https://recipe-app-edlsto.herokuapp.com/recipes",
+            this.newRecipe
+          );
         } catch (error) {
           console.log(error);
         }
@@ -299,10 +304,8 @@ export default {
     },
     createImage(item, file) {
       let reader = new FileReader();
-      console.log(reader);
       reader.onload = (e) => {
         item.image = e.target.result;
-        console.log("made it");
       };
       reader.readAsDataURL(file);
     },
