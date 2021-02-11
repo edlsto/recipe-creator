@@ -241,7 +241,7 @@ export default {
   created: async function() {
     if (this._id) {
       const response = await axios(`http://localhost:3001/recipes/${this._id}`);
-      this.newRecipe = response.data;
+      this.newRecipe = { ...response.data, image: undefined };
     }
   },
 
@@ -268,6 +268,7 @@ export default {
             cookTime: recipe.cookTime,
             prepTime: recipe.prepTime,
             serves: recipe.serves,
+            image: recipe.image,
           }
         );
       } else {
@@ -298,9 +299,10 @@ export default {
     },
     createImage(item, file) {
       let reader = new FileReader();
-
+      console.log(reader);
       reader.onload = (e) => {
         item.image = e.target.result;
+        console.log("made it");
       };
       reader.readAsDataURL(file);
     },
