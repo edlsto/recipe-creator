@@ -117,8 +117,20 @@
       <div class="add-image">
         <div class="add-item">
           <h4 class="section-title">Select an image</h4>
-
-          <div v-if="!newRecipe.image" class="choose-file">
+          <div v-if="newRecipe.cardImage">
+            <img
+              :src="
+                `https://recipe-app-edlsto.herokuapp.com/recipe/${newRecipe._id}/cardimage`
+              "
+              class="img-preview"
+            />
+            <button @click="removeImage(newRecipe)">Remove image</button>
+          </div>
+          <div v-else-if="newRecipe.image">
+            <img :src="newRecipe.image" class="img-preview" />
+            <button @click="removeImage(newRecipe)">Remove image</button>
+          </div>
+          <div v-else class="choose-file">
             <img src="../assets/placeholder.png" class="img-preview" />
 
             <input
@@ -126,10 +138,6 @@
               type="file"
               @change="onFileChange(newRecipe, $event)"
             />
-          </div>
-          <div v-else>
-            <img :src="newRecipe.image" class="img-preview" />
-            <button @click="removeImage(newRecipe)">Remove image</button>
           </div>
         </div>
         <h4 class="section-title">Details</h4>
@@ -310,7 +318,7 @@ export default {
       reader.readAsDataURL(file);
     },
     removeImage: function(item) {
-      item.image = false;
+      item.cardImage = null;
     },
     editIngredient: function(index, event) {
       this.newRecipe.ingredients[index] = event.target.innerHTML;
